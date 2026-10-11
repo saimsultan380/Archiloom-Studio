@@ -34,15 +34,25 @@ body {
 
 @keyframes menu-down {
   from {
-    clip-path: inset(0 0 100% 0);
+    transform: translate3d(0, -100%, 0);
   }
   to {
-    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .mobile-menu {
-  animation: menu-down 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: menu-down 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html.menu-open .route,
+html.menu-open .grid-draw,
+html.menu-open .marquee-track,
+html.menu-open .ticker-track,
+html.menu-open .footer-name,
+html.menu-open .title-accent,
+html.menu-open .pin-pulse {
+  animation-play-state: paused;
 }
 
 .btn::after {

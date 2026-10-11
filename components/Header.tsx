@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/data/site";
 import { Button } from "@/components/Button";
@@ -45,13 +45,16 @@ export function Header() {
   useEffect(() => {
     if (!open) return;
     closeRef.current?.focus();
+    const root = document.documentElement;
     const previous = document.body.style.overflow;
+    root.classList.add("menu-open");
     document.body.style.overflow = "hidden";
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") setOpen(false);
     }
     window.addEventListener("keydown", onKey);
     return () => {
+      root.classList.remove("menu-open");
       document.body.style.overflow = previous;
       window.removeEventListener("keydown", onKey);
     };
@@ -60,12 +63,12 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
+        "fixed inset-x-0 top-0 z-50",
         open
-          ? "bg-charcoal/65 backdrop-blur-xl"
+          ? "bg-charcoal"
           : solid
-            ? "border-b border-white/10 bg-charcoal/65 backdrop-blur-xl"
-            : "bg-transparent",
+            ? "border-b border-white/10 bg-charcoal/65 backdrop-blur-xl transition-[background-color,border-color,backdrop-filter] duration-300"
+            : "bg-transparent transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
       <div className="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between gap-6 px-6">
@@ -113,22 +116,23 @@ export function Header() {
         </button>
       </div>
       {open ? (
-        <div id="mobile-menu" className="mobile-menu fixed inset-x-0 top-[72px] bottom-0 z-[60] flex flex-col overflow-y-auto bg-charcoal/65 px-6 pt-8 pb-8 text-white backdrop-blur-xl lg:hidden">
-          <nav className="flex flex-col gap-5" aria-label="Mobile">
+        <div id="mobile-menu" className="mobile-menu bg-grid fixed inset-x-0 top-[72px] bottom-0 z-[80] flex flex-col overflow-y-auto overscroll-contain bg-charcoal px-6 py-8 text-white lg:hidden">
+          <nav className="flex flex-1 flex-col items-start justify-center gap-7 text-left" aria-label="Mobile">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-[clamp(32px,8vw,44px)] font-medium leading-none tracking-[-0.03em]"
+                className="group inline-flex items-start gap-2 font-display text-[clamp(32px,8vw,44px)] font-medium leading-none tracking-[-0.03em]"
               >
                 {link.label}
+                <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-signal" strokeWidth={1.75} aria-hidden />
               </a>
             ))}
           </nav>
-          <div className="mt-auto pb-6">
+          <div className="flex flex-col items-start pt-8 pb-2">
             <SteppedBlocks on="dark" />
-            <div className="mt-8">
+            <div className="mt-6 w-full max-w-sm">
               <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
                 Get a Quote
               </Button>

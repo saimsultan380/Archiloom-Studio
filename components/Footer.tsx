@@ -137,7 +137,7 @@ export function Footer() {
       </div>
       <p
         aria-hidden
-        className="footer-name pointer-events-none relative -mb-[0.16em] w-full max-w-full overflow-hidden px-2 text-center font-display text-[12.4vw] leading-none font-bold tracking-[-0.06em] select-none sm:px-4 sm:text-[clamp(64px,16vw,200px)] sm:tracking-[-0.07em]"
+        className="footer-name pointer-events-none relative -mb-[0.18em] w-full max-w-full px-1 text-center font-display text-[14.2vw] leading-[0.85] font-bold tracking-[-0.075em] select-none sm:px-3 sm:text-[clamp(72px,17.5vw,228px)] sm:tracking-[-0.08em]"
       >
         ARCHILOOM
       </p>
