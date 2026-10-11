@@ -1,0 +1,145 @@
+import { mkdirSync, writeFileSync } from "fs";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+
+/** Simplified land polygons as [longitude, latitude]. Tuned for a dotted hero map. */
+const lands = [
+  // North America
+  [
+    [-166, 68], [-158, 71], [-140, 70], [-128, 71], [-105, 73], [-88, 74], [-78, 73],
+    [-68, 68], [-64, 60], [-56, 53], [-56, 47], [-64, 44], [-70, 42], [-74, 38],
+    [-76, 35], [-81, 31], [-80, 25], [-82, 25], [-90, 29], [-94, 29], [-97, 26],
+    [-106, 22], [-110, 24], [-112, 31], [-117, 33], [-122, 37], [-124, 41],
+    [-124, 48], [-128, 52], [-136, 57], [-148, 60], [-158, 58], [-166, 64],
+  ],
+  // Greenland
+  [
+    [-68, 76], [-60, 82], [-48, 83], [-28, 76], [-22, 70], [-40, 62], [-48, 61],
+    [-56, 66], [-62, 76],
+  ],
+  // South America
+  [
+    [-78, 8], [-70, 12], [-60, 10], [-50, 5], [-35, -5], [-39, -16], [-40, -22],
+    [-48, -27], [-52, -33], [-58, -38], [-62, -42], [-68, -50], [-72, -52],
+    [-74, -46], [-72, -18], [-76, -8], [-80, 0],
+  ],
+  // Europe
+  [
+    [-9, 37], [-9, 43], [-8, 52], [-5, 58], [5, 62], [8, 58], [12, 56], [16, 55],
+    [20, 55], [24, 60], [28, 62], [30, 56], [28, 48], [24, 42], [20, 40], [16, 40],
+    [12, 42], [10, 44], [6, 43], [0, 43], [-5, 36],
+  ],
+  // United Kingdom & Ireland
+  [
+    [-10, 51], [-8, 55], [-6, 58], [-3, 59], [0, 53], [1, 51], [-2, 50], [-5, 50],
+    [-6, 52], [-10, 52],
+  ],
+  [
+    [-10, 52], [-9, 54], [-6, 55], [-6, 52], [-9, 51],
+  ],
+  // Africa
+  [
+    [-17, 15], [-16, 22], [-10, 32], [-6, 36], [3, 37], [10, 37], [11, 33], [25, 32],
+    [32, 31], [35, 31], [43, 12], [51, 12], [44, 2], [42, -10], [38, -16], [35, -22],
+    [32, -28], [28, -33], [20, -35], [18, -32], [14, -22], [12, -6], [8, 4],
+    [-5, 5], [-10, 6], [-16, 12],
+  ],
+  // Arabian Peninsula
+  [
+    [34, 31], [36, 28], [39, 22], [43, 16], [48, 14], [53, 16], [56, 22], [56, 26],
+    [50, 30], [44, 30], [38, 32],
+  ],
+  // Asia
+  [
+    [28, 41], [36, 36], [40, 40], [48, 42], [52, 46], [60, 45], [68, 45], [76, 42],
+    [80, 44], [88, 50], [104, 52], [120, 54], [132, 54], [140, 52], [142, 46],
+    [136, 42], [132, 34], [128, 34], [126, 38], [120, 38], [118, 30], [112, 22],
+    [108, 14], [104, 2], [100, 8], [98, 16], [92, 22], [80, 8], [76, 10], [72, 18],
+    [68, 24], [64, 25], [60, 25], [56, 27], [52, 26], [48, 28], [44, 30], [40, 32],
+    [36, 36],
+  ],
+  // India
+  [
+    [68, 24], [72, 22], [74, 18], [80, 14], [80, 10], [77, 8], [76, 10], [72, 16],
+    [70, 21], [68, 23],
+  ],
+  // Japan
+  [
+    [130, 32], [132, 34], [136, 35], [140, 36], [141, 41], [145, 43], [142, 45],
+    [140, 42], [139, 36], [134, 34], [131, 32],
+  ],
+  // Southeast Asia
+  [
+    [98, 8], [102, 6], [106, 2], [110, 2], [114, -2], [118, -3], [122, -2],
+    [116, 6], [108, 14], [104, 12], [100, 10],
+  ],
+  // Australia
+  [
+    [114, -22], [122, -18], [128, -14], [136, -12], [142, -11], [146, -15],
+    [150, -23], [153, -26], [150, -36], [146, -39], [140, -38], [130, -32],
+    [116, -34], [114, -28],
+  ],
+];
+
+function inside(lon, lat, poly) {
+  let hit = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [xi, yi] = poly[i];
+    const [xj, yj] = poly[j];
+    if (yi > lat !== yj > lat && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) {
+      hit = !hit;
+    }
+  }
+  return hit;
+}
+
+function onLand(lon, lat) {
+  return lands.some((poly) => inside(lon, lat, poly));
+}
+
+const dots = [];
+const step = 3.15;
+for (let lon = -168; lon <= 178; lon += step) {
+  for (let lat = -52; lat <= 78; lat += step) {
+    if (!onLand(lon, lat)) continue;
+    dots.push({
+      x: Number((((lon + 180) / 360) * 1000).toFixed(2)),
+      y: Number((((90 - lat) / 180) * 500).toFixed(2)),
+    });
+  }
+}
+
+const pins = [
+  ["North America", -100, 40],
+  ["United Kingdom", -2, 54],
+  ["Middle East", 45, 24],
+  ["Australia", 134, -25],
+];
+
+const cols = 78;
+const rows = 28;
+const grid = Array.from({ length: rows }, () => Array(cols).fill(" "));
+for (const dot of dots) {
+  const c = Math.min(cols - 1, Math.max(0, Math.round((dot.x / 1000) * (cols - 1))));
+  const r = Math.min(rows - 1, Math.max(0, Math.round((dot.y / 500) * (rows - 1))));
+  grid[r][c] = "·";
+}
+for (const [name, lon, lat] of pins) {
+  const x = ((lon + 180) / 360) * 1000;
+  const y = ((90 - lat) / 180) * 500;
+  const c = Math.min(cols - 1, Math.max(0, Math.round((x / 1000) * (cols - 1))));
+  const r = Math.min(rows - 1, Math.max(0, Math.round((y / 500) * (rows - 1))));
+  grid[r][c] = "●";
+  console.log(`${name}: land=${onLand(lon, lat)} at ${c},${r}`);
+}
+
+console.log(grid.map((row) => row.join("")).join("\n"));
+console.log(`dots ${dots.length}`);
+
+const out = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "map-dots.ts");
+mkdirSync(dirname(out), { recursive: true });
+const body = dots.map((d) => `  { x: ${d.x}, y: ${d.y} },`).join("\n");
+writeFileSync(
+  out,
+  `/** Generated by scripts/generate-map.mjs. Dotted world samples for the hero map. */\nexport const mapDots: { x: number; y: number }[] = [\n${body}\n];\n`,
+);

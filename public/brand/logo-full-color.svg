@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 44" role="img" aria-label="Archiloom Studio">
+  <!-- PLACEHOLDER — needs client SVG. Not final brand artwork. -->
+  <title>Archiloom Studio</title>
+  <rect x="0" y="28" width="8" height="8" fill="#7ED957"/>
+  <rect x="12" y="16" width="8" height="8" fill="#FFC857"/>
+  <rect x="24" y="4" width="8" height="8" fill="#1D1D1D"/>
+  <text x="40" y="22" fill="#1D1D1D" font-family="Montserrat, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="0.4">ARCHILOOM</text>
+  <text x="40" y="36" fill="#1D1D1D" font-family="Montserrat, Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="2.6">STUDIO</text>
+</svg>
