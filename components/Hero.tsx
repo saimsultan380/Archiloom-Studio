@@ -88,20 +88,22 @@ export function Hero() {
                 />
               </div>
               <div className="pointer-events-auto max-w-[640px] lg:col-start-1">
-                <div className="flex flex-wrap gap-3">
-                  <Button href="#contact">Start a Project</Button>
-                  <Button href="#work" variant="secondary" tone="dark">
+                <div className="flex flex-nowrap gap-2 sm:gap-3">
+                  <Button href="#contact" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
+                    Start a Project
+                  </Button>
+                  <Button href="#work" variant="secondary" tone="dark" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
                     View Projects
                   </Button>
                 </div>
-                <ul className="mt-10 grid gap-6 border-t border-white/15 pt-8 sm:grid-cols-3">
+                <ul className="mt-10 grid grid-cols-3 gap-3 border-t border-white/15 pt-8 sm:gap-6">
                   {pillars.map((pillar) => (
-                    <li key={pillar.title}>
-                      <Icon name={pillar.icon} className="text-white" />
-                      <p className="mt-3 font-display text-[13px] font-semibold uppercase tracking-[0.12em]">
+                    <li key={pillar.title} className="min-w-0 text-center sm:text-left">
+                      <Icon name={pillar.icon} className="mx-auto text-white sm:mx-0" />
+                      <p className="mt-3 font-display text-[11px] font-semibold uppercase tracking-[0.08em] sm:text-[13px] sm:tracking-[0.12em]">
                         {pillar.title}
                       </p>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{pillar.body}</p>
+                      <p className="mt-2 hidden text-sm leading-relaxed text-white/70 sm:block">{pillar.body}</p>
                     </li>
                   ))}
                 </ul>

@@ -32,6 +32,19 @@ body {
   outline-color: #1d1d1d;
 }
 
+@keyframes menu-down {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.mobile-menu {
+  animation: menu-down 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .btn::after {
   content: "";
   position: absolute;
@@ -391,6 +404,7 @@ body {
   .ticker-track,
   .grid-draw,
   .btn::after,
+  .mobile-menu,
   .logo-reveal,
   .mark-intro,
   .sq-a,

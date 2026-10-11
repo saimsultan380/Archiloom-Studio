@@ -45,7 +45,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 border-b border-white/10 pb-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="flex items-center gap-3 font-display text-[12px] font-semibold tracking-[0.16em] text-white/65 uppercase">
-              <span className="h-[3px] w-10 bg-signal" aria-hidden />
+              <span className="hidden h-[3px] w-10 bg-signal sm:block" aria-hidden />
               Archiloom Studio
             </p>
             <p className="mt-5 font-display text-[clamp(36px,5vw,64px)] font-bold leading-[0.95] tracking-[-0.04em]">
@@ -55,17 +55,19 @@ export function Footer() {
           <Button href="#contact">Start a Project</Button>
         </div>
         <div className="grid gap-12 py-12 lg:grid-cols-12">
-          <div className="text-center lg:col-span-3 lg:text-left">
-            <h3 className="footer-heading mx-auto w-fit lg:mx-0">Studio</h3>
-            <div className="mt-5 flex flex-col items-center gap-4 lg:items-start">
+          <div className="text-left lg:col-span-3">
+            <h3 className="footer-heading">Studio</h3>
+            <div className="mt-5 flex flex-nowrap items-center gap-x-3 lg:flex-col lg:items-start lg:gap-4">
               <FooterLink
                 href={`mailto:${studio.email}`}
+                className="whitespace-nowrap text-[clamp(11px,2.85vw,15px)] lg:text-[15px]"
                 mark={<Icon name="consulting" size={16} className="shrink-0 text-signal" />}
               >
                 {studio.email}
               </FooterLink>
               <FooterLink
                 href={studio.websiteUrl}
+                className="whitespace-nowrap text-[clamp(11px,2.85vw,15px)] lg:text-[15px]"
                 mark={<Icon name="global" size={16} className="shrink-0 text-signal" />}
               >
                 {studio.website}
@@ -135,7 +137,7 @@ export function Footer() {
       </div>
       <p
         aria-hidden
-        className="footer-name pointer-events-none relative -mb-[0.16em] px-4 text-center font-display text-[clamp(64px,16vw,200px)] leading-none font-bold tracking-[-0.07em] select-none"
+        className="footer-name pointer-events-none relative -mb-[0.16em] w-full max-w-full overflow-hidden px-2 text-center font-display text-[12.4vw] leading-none font-bold tracking-[-0.06em] select-none sm:px-4 sm:text-[clamp(64px,16vw,200px)] sm:tracking-[-0.07em]"
       >
         ARCHILOOM
       </p>

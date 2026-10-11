@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { services } from "@/data/services";
 import { Container } from "@/components/Container";
 import { Icon } from "@/components/Icon";
@@ -7,6 +10,8 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionLabel";
 
 export function ServicesGrid() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
   return (
     <section id="services" className="bg-n-100 py-16 md:py-24 lg:py-32">
       <Container>
@@ -31,7 +36,9 @@ export function ServicesGrid() {
             <Reveal key={service.id} delay={index * 0.06} className="h-full">
               <article
                 id={service.id}
-                className="group relative flex h-full flex-col rounded-[8px] border border-n-300 bg-white p-6 transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(29,29,29,0.06)] md:p-7"
+                data-open={openId === service.id ? "true" : undefined}
+                onClick={() => setOpenId((current) => (current === service.id ? null : service.id))}
+                className="group relative flex h-full cursor-pointer flex-col rounded-[8px] border border-n-300 bg-white p-6 transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(29,29,29,0.06)] md:p-7"
               >
                 <span className="service-icon inline-flex">
                   <Icon name={service.icon} />
@@ -47,7 +54,7 @@ export function ServicesGrid() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
+                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] group-data-[open=true]:grid-rows-[1fr]">
                   <div className="overflow-hidden">
                     <ul className="space-y-1.5 pt-4 text-sm leading-relaxed text-n-700">
                       {service.deliverables.map((item) => (
@@ -58,6 +65,7 @@ export function ServicesGrid() {
                 </div>
                 <Link
                   href={`/?service=${service.id}#contact`}
+                  onClick={(event) => event.stopPropagation()}
                   className="group/link mt-6 inline-flex items-center gap-1.5 self-start font-display text-sm font-semibold text-charcoal"
                 >
                   Learn more

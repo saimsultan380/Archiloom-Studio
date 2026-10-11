@@ -61,7 +61,11 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
-        solid || open ? "border-b border-white/10 bg-charcoal/65 backdrop-blur-xl" : "bg-transparent",
+        open
+          ? "bg-charcoal/65 backdrop-blur-xl"
+          : solid
+            ? "border-b border-white/10 bg-charcoal/65 backdrop-blur-xl"
+            : "bg-transparent",
       )}
     >
       <div className="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between gap-6 px-6">
@@ -97,34 +101,20 @@ export function Header() {
           <Button href="#contact">Get a Quote</Button>
         </div>
         <button
+          ref={closeRef}
           type="button"
-          className={cn(
-            "inline-flex h-11 w-11 items-center justify-center text-white lg:hidden",
-            open && "invisible",
-          )}
+          className="inline-flex h-11 w-11 items-center justify-center text-white lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          onClick={() => setOpen(true)}
+          onClick={() => setOpen((value) => !value)}
         >
-          <span className="sr-only">Open menu</span>
-          <Menu strokeWidth={1.75} />
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          {open ? <X strokeWidth={1.75} /> : <Menu strokeWidth={1.75} />}
         </button>
       </div>
       {open ? (
-        <div id="mobile-menu" className="fixed inset-0 z-[60] flex flex-col bg-charcoal px-6 py-6 text-white lg:hidden">
-          <div className="flex items-center justify-between">
-            <Logo />
-            <button
-              ref={closeRef}
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center"
-              onClick={() => setOpen(false)}
-            >
-              <span className="sr-only">Close menu</span>
-              <X strokeWidth={1.75} />
-            </button>
-          </div>
-          <nav className="mt-16 flex flex-col gap-5" aria-label="Mobile">
+        <div id="mobile-menu" className="mobile-menu fixed inset-x-0 top-[72px] bottom-0 z-[60] flex flex-col overflow-y-auto bg-charcoal/65 px-6 pt-8 pb-8 text-white backdrop-blur-xl lg:hidden">
+          <nav className="flex flex-col gap-5" aria-label="Mobile">
             {navLinks.map((link) => (
               <a
                 key={link.href}
