@@ -2,7 +2,7 @@
 @import "../styles/tokens.css";
 
 :root {
-  color-scheme: light;
+  color-scheme: only light;
 }
 
 html {
