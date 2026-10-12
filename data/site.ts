@@ -2,19 +2,19 @@
 export const PROJECT_CLAIM = "More than 1,000 projects across 4 continents.";
 
 export const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Consultations", href: "#consultations" },
-  { label: "About Us", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/projects" },
+  { label: "Services", href: "/services" },
+  { label: "Consultations", href: "/contact#consultations" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const sitemapLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Consultations", href: "#consultations" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/projects" },
+  { label: "Services", href: "/services" },
+  { label: "Consultations", href: "/contact#consultations" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const socialLinks = ["Instagram", "LinkedIn", "Behance", "Dribbble"] as const;
@@ -45,5 +45,5 @@ export const studio = {
   tagline: "Thoughtful design. Technical precision. Global delivery.",
   title: "Archiloom Studio — Global Architecture & Design Studio",
   description:
-    "Architecture, interiors, permit drafting, visualization and outdoor construction — delivered with technical precision and honest, budget-friendly pricing.",
+    "Architecture, interiors, permit drafting, visualization and animation — delivered with technical precision and honest, budget-friendly pricing.",
 } as const;

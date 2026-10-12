@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Montserrat, Poppins } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { studio } from "@/data/site";
 import "./globals.css";
 
@@ -61,11 +63,6 @@ const jsonLd = {
     "Building permit drafting",
     "3D visualization",
     "Architectural animation",
-    "Outdoor construction",
-    "Outdoor kitchens",
-    "Concrete work",
-    "Cabanas",
-    "Artificial turf installation",
   ],
 };
 
@@ -76,7 +73,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link font-display text-sm" href="#main">
           Skip to content
         </a>
+        <Header />
         {children}
+        <Footer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

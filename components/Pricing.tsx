@@ -63,7 +63,7 @@ export function Pricing() {
               </ul>
               <div className="mt-auto pt-8">
                 <Button
-                  href={`/?plan=${pkg.id}#contact`}
+                  href={`/contact?plan=${pkg.id}`}
                   variant={pkg.featured ? "primary" : "secondary"}
                   className="w-full"
                 >
@@ -80,7 +80,7 @@ export function Pricing() {
           Feature lists are draft placeholders, to be confirmed.{" "}
           <span className="mt-2 block text-charcoal md:mt-3 md:text-[17px]">
             Need something different?{" "}
-            <Link href="/?plan=custom#contact" className="text-link font-display font-semibold">
+            <Link href="/contact?plan=custom" className="text-link font-display font-semibold">
               Discuss Your Scope →
             </Link>
           </span>
@@ -99,7 +99,7 @@ export function Pricing() {
               ))}
             </ol>
             <div className="mt-8">
-              <Button href={`/?plan=${active.id}#contact`} onClick={() => setActive(null)}>
+              <Button href={`/contact?plan=${active.id}`} onClick={() => setActive(null)}>
                 Start a Project
               </Button>
             </div>

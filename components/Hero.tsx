@@ -73,25 +73,25 @@ export function Hero() {
                   </span>
                 </h1>
                 <p className="mt-6 max-w-xl text-[17px] leading-[1.6] text-white/75">
-                  Architecture, interiors, permit drafting, visualization and outdoor construction, delivered with technical precision and honest, budget-friendly pricing.
+                  Architecture, interiors, permit drafting, visualization and animation, delivered with technical precision and honest, budget-friendly pricing.
                 </p>
               </div>
               <div className="pointer-events-none relative aspect-[16/10] w-full overflow-hidden border border-white/15 lg:col-start-2 lg:row-span-2 lg:row-start-1">
                 <Image
-                  src="/images/hero-residence.jpg"
-                  alt="Contemporary residence with a long glazed elevation at dusk"
+                  src="/images/hero-model.jpg"
+                  alt="Three-dimensional render of a contemporary courtyard house at dusk"
                   fill
                   priority
-                  className="object-cover object-[center_42%]"
+                  className="object-cover object-center"
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
               </div>
               <div className="pointer-events-auto max-w-[640px] lg:col-start-1">
                 <div className="flex flex-nowrap gap-2 sm:gap-3">
-                  <Button href="#contact" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
+                  <Button href="/contact" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
                     Start a Project
                   </Button>
-                  <Button href="#work" variant="secondary" tone="dark" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
+                  <Button href="/projects" variant="secondary" tone="dark" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
                     View Projects
                   </Button>
                 </div>

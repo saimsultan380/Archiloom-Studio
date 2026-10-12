@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { services } from "@/data/services";
+import { services, type ServiceId } from "@/data/services";
 import { sitemapLinks, socialLinks, studio } from "@/data/site";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
@@ -10,6 +10,15 @@ import { Logo } from "@/components/Logo";
 import { Modal } from "@/components/Modal";
 import { SocialLogo } from "@/components/SocialLogo";
 import type { MouseEvent, ReactNode } from "react";
+
+const footerServiceName: Record<ServiceId, string> = {
+  "architecture-design": "Architecture Design",
+  "revit-drafting": "Revit Drafting",
+  "permit-sets": "Permit Sets",
+  "modeling-rendering": "3D Modeling",
+  "architectural-animation": "Animation",
+  "interior-design": "Interior Design",
+};
 
 function FooterLink({
   href,
@@ -52,10 +61,10 @@ export function Footer() {
               Designing a better <span className="title-accent">tomorrow</span>, space by space.
             </p>
           </div>
-          <Button href="#contact">Start a Project</Button>
+          <Button href="/contact">Start a Project</Button>
         </div>
-        <div className="grid gap-12 py-12 lg:grid-cols-12">
-          <div className="text-left lg:col-span-3">
+        <div className="grid gap-12 py-12 lg:grid-cols-4 lg:gap-x-16">
+          <div className="text-left">
             <h3 className="footer-heading">Studio</h3>
             <div className="mt-5 flex flex-nowrap items-center gap-x-3 lg:flex-col lg:items-start lg:gap-4">
               <FooterLink
@@ -79,7 +88,7 @@ export function Footer() {
             <p className="mt-3 text-[15px] text-white/75">Forthcoming</p>
           </div>
           <div className="grid grid-cols-2 gap-8 lg:contents">
-            <div className="lg:col-span-2">
+            <div>
               <h3 className="footer-heading">Explore</h3>
               <ul className="mt-4 space-y-2">
                 {sitemapLinks.map((link) => (
@@ -89,7 +98,7 @@ export function Footer() {
                 ))}
               </ul>
             </div>
-            <div className="lg:col-span-2">
+            <div>
               <h3 className="footer-heading">Follow</h3>
               <ul className="mt-4 space-y-2">
                 {socialLinks.map((label) => (
@@ -107,13 +116,13 @@ export function Footer() {
               </ul>
             </div>
           </div>
-          <div className="lg:col-span-5">
+          <div>
             <h3 className="footer-heading">Services</h3>
-            <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+            <ul className="mt-4 grid grid-cols-1 gap-y-2">
               {services.map((service) => (
                 <li key={service.id}>
-                  <FooterLink href={`#${service.id}`} className="text-[14px] leading-snug">
-                    {service.title}
+                  <FooterLink href={`/services#${service.id}`} className="text-[14px] leading-snug">
+                    {footerServiceName[service.id]}
                   </FooterLink>
                 </li>
               ))}
@@ -137,7 +146,7 @@ export function Footer() {
       </div>
       <p
         aria-hidden
-        className="footer-name pointer-events-none relative -mb-[0.18em] w-full max-w-full px-1 text-center font-display text-[14.2vw] leading-[0.85] font-bold tracking-[-0.075em] select-none sm:px-3 sm:text-[clamp(72px,17.5vw,228px)] sm:tracking-[-0.08em]"
+        className="footer-name pointer-events-none relative -mb-[0.1em] w-full max-w-full px-1 text-center font-display text-[14.2vw] leading-none font-bold tracking-[-0.075em] select-none sm:px-3 sm:text-[clamp(72px,17.5vw,228px)] sm:tracking-[-0.08em]"
       >
         ARCHILOOM
       </p>

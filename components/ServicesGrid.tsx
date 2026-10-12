@@ -9,17 +9,19 @@ import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionLabel";
 
-export function ServicesGrid() {
+export function ServicesGrid({ showHeading = true }: { showHeading?: boolean }) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <section id="services" className="bg-n-100 py-16 md:py-24 lg:py-32">
       <Container>
-        <SectionHeading
-          label="Services"
-          title={<>Services we offer <span className="title-accent">in detail</span></>}
-          description="Design, documentation and outdoor construction for homeowners, developers, contractors and AEC firms."
-        />
+        {showHeading ? (
+          <SectionHeading
+            label="Services"
+            title={<>Services we offer <span className="title-accent">in detail</span></>}
+            description="Design and documentation for homeowners, developers, contractors and AEC firms."
+          />
+        ) : null}
         <svg className="pointer-events-none absolute h-0 w-0" aria-hidden>
           <defs>
             <linearGradient id="service-icon-gradient" x1="-100%" y1="0%" x2="0%" y2="0%">
@@ -31,7 +33,7 @@ export function ServicesGrid() {
             </linearGradient>
           </defs>
         </svg>
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className={`${showHeading ? "mt-14" : ""} grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3`}>
           {services.map((service, index) => (
             <Reveal key={service.id} delay={index * 0.06} className="h-full">
               <article
@@ -64,7 +66,7 @@ export function ServicesGrid() {
                   </div>
                 </div>
                 <Link
-                  href={`/?service=${service.id}#contact`}
+                  href={`/contact?service=${service.id}`}
                   onClick={(event) => event.stopPropagation()}
                   className="group/link mt-6 inline-flex items-center gap-1.5 self-start font-display text-sm font-semibold text-charcoal"
                 >

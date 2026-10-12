@@ -38,7 +38,7 @@ function isPlan(value: string | null): value is PlanId {
   return Boolean(value && (planValues as readonly string[]).includes(value));
 }
 
-export function Contact() {
+export function Contact({ formOnly = false }: { formOnly?: boolean }) {
   const params = useSearchParams();
   const [form, setForm] = useState<FormState>(empty);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
@@ -105,7 +105,8 @@ export function Contact() {
   return (
     <section id="contact" className="bg-white py-16 text-charcoal md:py-24 lg:py-32">
       <Container>
-        <div className="grid items-stretch gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className={formOnly ? "" : "grid items-stretch gap-8 lg:grid-cols-12 lg:gap-10"}>
+          {formOnly ? null : (
           <div className="flex flex-col lg:col-span-5">
             <SectionLabel label="Contact" />
             <h2 className="mt-4 font-display text-[clamp(36px,4.2vw,52px)] font-bold leading-[1.08] tracking-[-0.035em]">
@@ -118,14 +119,15 @@ export function Contact() {
             <div className="relative mt-8 aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[280px] lg:flex-1">
               <Image
                 src="/images/outdoor-terrace.jpg"
-                alt="Outdoor terrace with a cabana, kitchen, concrete patio and pool"
+                alt="Contemporary terrace beside a residence"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 100vw"
               />
             </div>
           </div>
-          <div className="border border-n-300 bg-n-100 p-6 md:p-8 lg:col-span-7 lg:p-10">
+          )}
+          <div className={`border border-n-300 bg-n-100 p-6 md:p-8 lg:p-10 ${formOnly ? "" : "lg:col-span-7"}`}>
             <p className="font-display text-[12px] font-semibold tracking-[0.14em] text-n-700 uppercase">Request a quote</p>
             <h3 className="mt-3 font-display text-[28px] font-semibold tracking-[-0.03em]">Start with the scope.</h3>
             {status === "success" ? (

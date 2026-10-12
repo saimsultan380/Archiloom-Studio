@@ -47,7 +47,7 @@ Replace these before anything is treated as live.
 | Logo lockup, color | `public/brand/logo-full-color.svg` | **needs client SVG**. Not placed on the page yet. For light backgrounds. |
 | Logo mark | `public/brand/logo-mark.svg` | **needs client SVG**. Favicon art is `app/icon.svg`. |
 | Project claim | `data/site.ts` → `PROJECT_CLAIM` | Brief figure, kept in one constant. |
-| Services copy | `data/services.ts` | Draft copy. Cards 07–11 (outdoor construction, outdoor kitchens, concrete work, cabanas, artificial turf) still need the client’s descriptions and photos. |
+| Services copy | `data/services.ts` | Draft copy for the six architecture and design services. |
 | Package prices | `data/packages.ts` | $1,895 /mo, $2,500 /mo, $28 /hr, with the brief’s hour bands. |
 | Package features | `data/packages.ts` | **To be defined by the client.** |
 | How it works | `data/packages.ts` | Placeholder process. |

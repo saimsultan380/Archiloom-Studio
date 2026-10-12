@@ -1,6 +1,8 @@
 "use client";
 
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/data/site";
 import { Button } from "@/components/Button";
@@ -8,13 +10,18 @@ import { Logo } from "@/components/Logo";
 import { SteppedBlocks } from "@/components/SteppedBlocks";
 import { cn } from "@/lib/cn";
 
-const sectionIds = ["work", "services", "consultations", "about", "contact"];
-
 export function Header() {
+  const pathname = usePathname();
+  const home = pathname === "/";
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [active, setActive] = useState<string | null>(null);
+
+  function current(href: string) {
+    const path = href.split("#")[0];
+    if (href.includes("#")) return false;
+    return pathname === path || pathname.startsWith(`${path}/`);
+  }
 
   useEffect(() => {
     function onScroll() {
@@ -23,23 +30,6 @@ export function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const nodes = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => Boolean(node));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActive(visible.target.id);
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: [0.1, 0.3, 0.6] },
-    );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -66,28 +56,27 @@ export function Header() {
         "fixed inset-x-0 top-0 z-50",
         open
           ? "bg-charcoal"
-          : solid
+          : !home || solid
             ? "border-b border-white/10 bg-charcoal/65 backdrop-blur-xl transition-[background-color,border-color,backdrop-filter] duration-300"
             : "bg-transparent transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
       <div className="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between gap-6 px-6">
-        <a href="#main" className="shrink-0">
-          <Logo animate />
-        </a>
+        <Link href="/" className="shrink-0">
+          <Logo animate={home} />
+        </Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navLinks.map((link) => {
-            const id = link.href.slice(1);
-            const isActive = active === id;
+            const isActive = current(link.href);
             return (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
                   "group relative font-display text-[13px] font-medium tracking-[0.03em] text-white/75 transition-colors duration-300 hover:text-white",
                   isActive && "text-white",
                 )}
-                aria-current={isActive ? "true" : undefined}
+                aria-current={isActive ? "page" : undefined}
               >
                 {link.label}
                 <span
@@ -96,12 +85,12 @@ export function Header() {
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                   )}
                 />
-              </a>
+              </Link>
             );
           })}
         </nav>
         <div className="hidden lg:block">
-          <Button href="#contact">Get a Quote</Button>
+          <Button href="/contact">Get a Quote</Button>
         </div>
         <button
           ref={closeRef}
@@ -119,7 +108,7 @@ export function Header() {
         <div id="mobile-menu" className="mobile-menu bg-grid fixed inset-x-0 top-[72px] bottom-0 z-[80] flex flex-col overflow-y-auto overscroll-contain bg-charcoal px-6 py-8 text-white lg:hidden">
           <nav className="flex flex-1 flex-col items-start justify-center gap-7 text-left" aria-label="Mobile">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
@@ -127,13 +116,13 @@ export function Header() {
               >
                 {link.label}
                 <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-signal" strokeWidth={1.75} aria-hidden />
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex flex-col items-start pt-8 pb-2">
             <SteppedBlocks on="dark" />
             <div className="mt-6 w-full max-w-sm">
-              <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
+              <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
                 Get a Quote
               </Button>
             </div>

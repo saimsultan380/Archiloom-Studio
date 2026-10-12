@@ -2,8 +2,6 @@ import { Suspense } from "react";
 import { About } from "@/components/About";
 import { ClientsGrid } from "@/components/ClientsGrid";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
 import { Pricing } from "@/components/Pricing";
@@ -16,9 +14,7 @@ import { Team } from "@/components/Team";
 
 export default function HomePage() {
   return (
-    <>
-      <Header />
-      <main id="main">
+    <main id="main">
         <Hero />
         <ServiceBar />
         <ProofStrip />
@@ -33,8 +29,6 @@ export default function HomePage() {
         <Suspense fallback={<div className="h-96 bg-white" aria-hidden />}>
           <Contact />
         </Suspense>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }

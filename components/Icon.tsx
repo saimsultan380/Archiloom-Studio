@@ -1,20 +1,15 @@
 import {
   Armchair,
   Box,
-  BrickWall,
   Building2,
   Check,
   Clapperboard,
   ClipboardCheck,
-  CookingPot,
   Globe,
   Hammer,
-  HardHat,
   LayoutGrid,
   MessagesSquare,
   PencilRuler,
-  Sprout,
-  TreePalm,
   type LucideIcon,
 } from "lucide-react";
 
@@ -29,11 +24,6 @@ const icons = {
   global: Globe,
   animation: Clapperboard,
   permits: ClipboardCheck,
-  outdoor: HardHat,
-  kitchen: CookingPot,
-  concrete: BrickWall,
-  cabana: TreePalm,
-  turf: Sprout,
   check: Check,
 } satisfies Record<string, LucideIcon>;
 

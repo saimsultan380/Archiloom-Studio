@@ -7,11 +7,6 @@ export const serviceIds = [
   "modeling-rendering",
   "architectural-animation",
   "interior-design",
-  "outdoor-construction",
-  "outdoor-kitchens",
-  "concrete-work",
-  "cabanas",
-  "artificial-turf",
 ] as const;
 
 export type ServiceId = (typeof serviceIds)[number];
@@ -87,57 +82,6 @@ export const services: Service[] = [
     deliverables: ["Planning options", "Material palette", "Interior detail drawings"],
     icon: "interior",
   },
-  // Draft copy. Client has not sent descriptions or photos yet.
-  {
-    id: "outdoor-construction",
-    number: "07",
-    title: "Outdoor Construction",
-    summary:
-      "Site structures, outdoor rooms and hardscape built to the same drawings and standards as the rest of the project.",
-    tags: ["Site structures", "Hardscape", "Outdoor rooms"],
-    deliverables: ["Scope and layout", "Built outdoor structures", "Coordinated site work"],
-    icon: "outdoor",
-  },
-  {
-    id: "outdoor-kitchens",
-    number: "08",
-    title: "Outdoor Kitchens",
-    summary:
-      "Cooking, prep and serving zones planned for weather, utilities and how the terrace is actually used.",
-    tags: ["Cooking zones", "Utilities", "Terrace layout"],
-    deliverables: ["Kitchen layout", "Appliance and utility plan", "Finish and counter selection"],
-    icon: "kitchen",
-  },
-  {
-    id: "concrete-work",
-    number: "09",
-    title: "Concrete Work",
-    summary:
-      "Slabs, patios, steps and formed concrete finished for strength, drainage and a clean edge.",
-    tags: ["Slabs & patios", "Steps", "Formed concrete"],
-    deliverables: ["Pour layout", "Formed edges and steps", "Finish and joint plan"],
-    icon: "concrete",
-  },
-  {
-    id: "cabanas",
-    number: "10",
-    title: "Cabanas",
-    summary:
-      "Shade structures and poolside rooms with a clear structure, a usable plan and a finish that belongs to the house.",
-    tags: ["Shade structures", "Poolside rooms", "Finish"],
-    deliverables: ["Structure concept", "Plan and elevations", "Built cabana"],
-    icon: "cabana",
-  },
-  {
-    id: "artificial-turf",
-    number: "11",
-    title: "Artificial Turf Installation",
-    summary:
-      "Turf laid for drainage, seams and a surface that stays even under furniture, play and sun.",
-    tags: ["Surface prep", "Drainage", "Seam layout"],
-    deliverables: ["Base preparation", "Turf layout and seams", "Installed surface"],
-    icon: "turf",
-  },
 ];
 
 export const serviceBar: Array<{
@@ -145,16 +89,16 @@ export const serviceBar: Array<{
   href: string;
   icon: IconName;
 }> = [
-  { label: "Architecture Design", href: "#architecture-design", icon: "architecture" },
-  { label: "Interior Design", href: "#interior-design", icon: "interior" },
+  { label: "Architecture Design", href: "/services#architecture-design", icon: "architecture" },
+  { label: "Interior Design", href: "/services#interior-design", icon: "interior" },
   {
     label: "Building Permits & Drafting Services",
-    href: "#permit-sets",
+    href: "/services#permit-sets",
     icon: "drafting",
   },
   {
     label: "Visualization / Animation",
-    href: "#modeling-rendering",
+    href: "/services#modeling-rendering",
     icon: "visualization",
   },
 ];

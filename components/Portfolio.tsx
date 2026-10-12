@@ -60,7 +60,7 @@ export function Portfolio() {
             </h2>
             <GreenBar />
           </div>
-          <a href="#work-grid" className="text-link mb-2 font-display text-sm font-semibold">
+          <a href="/projects" className="text-link mb-2 font-display text-sm font-semibold">
             See all projects →
           </a>
         </div>
@@ -129,7 +129,10 @@ export function Portfolio() {
             <p className="mt-3 text-[16px] leading-[1.6]">{selected.summary}</p>
             <p className="mt-3 text-sm text-n-700">Placeholder study for layout approval.</p>
             <div className="mt-8">
-              <Button href="#contact" onClick={() => setSelected(null)}>
+              <Button href={`/projects/${selected.id}`} onClick={() => setSelected(null)}>
+                Open project
+              </Button>
+              <Button href="/contact" variant="secondary" className="ml-3" onClick={() => setSelected(null)}>
                 Start a Project
               </Button>
             </div>
