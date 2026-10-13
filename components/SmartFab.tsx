@@ -18,7 +18,7 @@ export function SmartFab() {
         aria-expanded={open}
       >
         <MessageSquare className="h-4 w-4" strokeWidth={1.75} aria-hidden />
-        smart
+        Get a Quote
       </button>
       <Modal open={open} title="Request a quote" onClose={() => setOpen(false)}>
         <p className="mb-6 text-[15px] leading-[1.6] text-n-700">
