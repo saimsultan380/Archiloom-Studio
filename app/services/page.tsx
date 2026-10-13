@@ -15,8 +15,8 @@ export default function ServicesPage() {
         label="Services"
         title={<>Services we offer <span className="title-accent">in detail</span></>}
         description="Design and documentation for homeowners, developers, contractors and AEC firms."
-        image="/images/northline-court.jpg"
-        imageAlt="Courtyard looking toward a long glazed wing"
+        image="/images/stone-lobby.jpg"
+        imageAlt="Stone lobby with a long timber bench and soft daylight"
       />
       <ServicesGrid showHeading={false} />
       <ServicesExtras />
