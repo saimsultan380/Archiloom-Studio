@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Montserrat, Poppins } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SmartFab } from "@/components/SmartFab";
 import { studio } from "@/data/site";
 import "./globals.css";
 
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         {children}
         <Footer />
+        <SmartFab />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
