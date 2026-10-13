@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact — Archiloom Studio",
-  description: "Request a quote or book a consultation with Archiloom Studio.",
+  description: "Request a quote from Archiloom Studio.",
 };
 
 export default function ContactPage() {

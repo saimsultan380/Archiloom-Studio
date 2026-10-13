@@ -4,7 +4,6 @@ export const PROJECT_CLAIM = "More than 1,000 projects across 4 continents.";
 export const navLinks = [
   { label: "Work", href: "/projects" },
   { label: "Services", href: "/services" },
-  { label: "Consultations", href: "/contact#consultations" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -12,7 +11,6 @@ export const navLinks = [
 export const sitemapLinks = [
   { label: "Work", href: "/projects" },
   { label: "Services", href: "/services" },
-  { label: "Consultations", href: "/contact#consultations" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;

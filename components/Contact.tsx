@@ -1,8 +1,9 @@
 "use client";
 
 import type { FormEvent, ReactNode } from "react";
+import { MessageSquare } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { planOptions, planValues, type PlanId } from "@/data/packages";
 import { serviceIds, services } from "@/data/services";
@@ -43,6 +44,8 @@ export function Contact({ formOnly = false }: { formOnly?: boolean }) {
   const [form, setForm] = useState<FormState>(empty);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formOpen, setFormOpen] = useState(!formOnly);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const plan = params.get("plan");
@@ -127,7 +130,28 @@ export function Contact({ formOnly = false }: { formOnly?: boolean }) {
             </div>
           </div>
           )}
-          <div className={`border border-n-300 bg-n-100 p-6 md:p-8 lg:p-10 ${formOnly ? "" : "lg:col-span-7"}`}>
+          <div id="quote-form" className={`border border-n-300 bg-n-100 p-6 md:p-8 lg:p-10 ${formOnly ? "" : "lg:col-span-7"}`}>
+            {!formOpen ? (
+              <div className="flex flex-col items-start gap-5 py-4">
+                <p className="font-display text-[12px] font-semibold tracking-[0.14em] text-n-700 uppercase">Request a quote</p>
+                <h3 className="font-display text-[28px] font-semibold tracking-[-0.03em]">Start with the scope.</h3>
+                <p className="max-w-md text-[16px] leading-[1.6] text-n-700">
+                  Share the site, the service and how you want to work. We come back with a clear next step.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormOpen(true);
+                    window.setTimeout(() => nameRef.current?.focus(), 50);
+                  }}
+                  className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-action text-charcoal shadow-[0_10px_24px_rgba(255,200,87,0.35)] transition-transform duration-300 hover:scale-105"
+                  aria-label="Open quote form"
+                >
+                  <MessageSquare className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+                </button>
+              </div>
+            ) : (
+              <>
             <p className="font-display text-[12px] font-semibold tracking-[0.14em] text-n-700 uppercase">Request a quote</p>
             <h3 className="mt-3 font-display text-[28px] font-semibold tracking-[-0.03em]">Start with the scope.</h3>
             {status === "success" ? (
@@ -152,6 +176,7 @@ export function Contact({ formOnly = false }: { formOnly?: boolean }) {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Name" error={errors.name}>
                     <input
+                      ref={nameRef}
                       className={fieldClass}
                       name="name"
                       autoComplete="name"
@@ -241,14 +266,8 @@ export function Contact({ formOnly = false }: { formOnly?: boolean }) {
                 </div>
               </form>
             )}
-            <div id="consultations" className="mt-8 border-t border-n-300 pt-8">
-              <p className="font-display text-[12px] font-semibold tracking-[0.14em] text-n-700 uppercase">Consultations</p>
-              <h3 className="mt-3 font-display text-[24px] font-semibold tracking-[-0.03em]">Book a call</h3>
-              <p className="mt-3 max-w-xl text-[16px] leading-[1.6] text-n-700">
-                A short working session to walk through scope, drawings and the right way to engage the studio.
-              </p>
-              <ConsultationPanel />
-            </div>
+              </>
+            )}
           </div>
         </div>
       </Container>
@@ -274,27 +293,3 @@ function Field({
   );
 }
 
-function ConsultationPanel() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="mt-6">
-      <Button variant="secondary" onClick={() => setOpen((value) => !value)} ariaExpanded={open}>
-        Book a Consultation
-      </Button>
-      {open ? (
-        <div className="mt-6 border border-n-300 p-4">
-          <p className="font-display text-[12px] font-semibold tracking-[0.14em] text-n-700 uppercase">
-            Calendar embed — forthcoming
-          </p>
-          <div className="mt-4 grid grid-cols-7 gap-1.5" aria-hidden>
-            {Array.from({ length: 28 }).map((_, index) => (
-              <span key={index} className="aspect-square border border-n-300" />
-            ))}
-          </div>
-          <p className="mt-4 text-sm text-n-700">A live calendar will replace this placeholder.</p>
-        </div>
-      ) : null}
-    </div>
-  );
-}
