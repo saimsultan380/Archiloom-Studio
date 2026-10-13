@@ -8,6 +8,11 @@ export const projectFilters = [
 
 export type ProjectCategory = (typeof projectFilters)[number];
 
+export type ProjectFrame = {
+  src: string;
+  alt: string;
+};
+
 export type Project = {
   id: string;
   name: string;
@@ -17,6 +22,7 @@ export type Project = {
   imageAlt: string;
   imageLabel: string;
   tone: string;
+  frames: [ProjectFrame, ProjectFrame, ProjectFrame];
   /** PLACEHOLDER — replace with a real project photograph or render. */
   placeholder: true;
 };
@@ -32,6 +38,11 @@ export const projects: Project[] = [
     imageAlt: "Low courtyard house in pale concrete and timber",
     imageLabel: "Render — Residential, 16:10",
     tone: "#2a2a2a",
+    frames: [
+      { src: "/images/courtyard-house.jpg", alt: "Low courtyard house in pale concrete and timber" },
+      { src: "/images/northline-court.jpg", alt: "Courtyard looking toward a long glazed wing" },
+      { src: "/images/outdoor-terrace.jpg", alt: "Terrace and pool beside the house" },
+    ],
     placeholder: true,
   },
   {
@@ -43,6 +54,11 @@ export const projects: Project[] = [
     imageAlt: "Waterfront workplace with charcoal metal and floor-to-ceiling glass",
     imageLabel: "Render — Commercial, 16:10",
     tone: "#333333",
+    frames: [
+      { src: "/images/commercial-edge.jpg", alt: "Waterfront workplace with charcoal metal and floor-to-ceiling glass" },
+      { src: "/images/harbor-interior.jpg", alt: "Harbor workplace interior with a long oak table" },
+      { src: "/images/glass-tower.jpg", alt: "Glass volume at dusk" },
+    ],
     placeholder: true,
   },
   {
@@ -54,6 +70,11 @@ export const projects: Project[] = [
     imageAlt: "Living room in oak and plaster with a long garden window",
     imageLabel: "Render — Interior, 16:10",
     tone: "#242424",
+    frames: [
+      { src: "/images/interior-living.jpg", alt: "Living room in oak and plaster with a long garden window" },
+      { src: "/images/atelier-joinery.jpg", alt: "Oak joinery and linen seating in daylight" },
+      { src: "/images/stone-lobby.jpg", alt: "Stone and timber interior" },
+    ],
     placeholder: true,
   },
   {
@@ -65,6 +86,11 @@ export const projects: Project[] = [
     imageAlt: "Contemporary residence with warm interior light at dusk",
     imageLabel: "Render — Courtyard housing, 16:10",
     tone: "#2e2e2e",
+    frames: [
+      { src: "/images/hero-residence.jpg", alt: "Contemporary residence with warm interior light at dusk" },
+      { src: "/images/cedar-court.jpg", alt: "Low courtyard housing with repeated bays" },
+      { src: "/images/courtyard-house.jpg", alt: "Shared court between pale wings" },
+    ],
     placeholder: true,
   },
   {
@@ -76,6 +102,11 @@ export const projects: Project[] = [
     imageAlt: "Stone lobby with a long timber bench",
     imageLabel: "Render — Lobby, 16:10",
     tone: "#383838",
+    frames: [
+      { src: "/images/stone-lobby.jpg", alt: "Stone lobby with a long timber bench" },
+      { src: "/images/meridian-bench.jpg", alt: "Pale stone wall and a long timber bench" },
+      { src: "/images/interior-living.jpg", alt: "Quiet seating in warm daylight" },
+    ],
     placeholder: true,
   },
   {
@@ -87,6 +118,11 @@ export const projects: Project[] = [
     imageAlt: "Slender glass tower at dusk",
     imageLabel: "Render — Tower study, 16:10",
     tone: "#262626",
+    frames: [
+      { src: "/images/glass-tower.jpg", alt: "Slender glass tower at dusk" },
+      { src: "/images/glassline-street.jpg", alt: "Looking up the glass tower at dusk" },
+      { src: "/images/commercial-edge.jpg", alt: "Glass and charcoal metal at the street" },
+    ],
     placeholder: true,
   },
 ];

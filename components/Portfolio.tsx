@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { projectFilters, projects, type Project, type ProjectCategory } from "@/data/projects";
 import { Button } from "@/components/Button";
@@ -60,9 +61,9 @@ export function Portfolio() {
             </h2>
             <GreenBar />
           </div>
-          <a href="/projects" className="text-link mb-2 font-display text-sm font-semibold">
+          <Link href="/projects" className="text-link mb-2 font-display text-sm font-semibold">
             See all projects →
-          </a>
+          </Link>
         </div>
         <div className="mt-8 flex flex-wrap gap-2" role="toolbar" aria-label="Filter projects">
           {projectFilters.map((item) => {
