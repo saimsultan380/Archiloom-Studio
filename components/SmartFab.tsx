@@ -13,7 +13,7 @@ export function SmartFab() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed right-5 bottom-5 z-[65] inline-flex items-center gap-2 rounded-full bg-action px-4 py-3 font-display text-[13px] font-semibold tracking-[0.04em] text-charcoal shadow-[0_12px_28px_rgba(255,200,87,0.45)] transition-transform duration-300 hover:scale-[1.03] md:right-8 md:bottom-8"
+        className="smart-fab fixed right-5 bottom-5 z-[65] inline-flex items-center gap-2 rounded-full bg-action px-4 py-3 font-display text-[13px] font-semibold tracking-[0.04em] text-charcoal shadow-[0_12px_28px_rgba(255,200,87,0.45)] transition-transform duration-300 hover:scale-[1.03] md:right-8 md:bottom-8"
         aria-haspopup="dialog"
         aria-expanded={open}
       >

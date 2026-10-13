@@ -55,6 +55,10 @@ html.menu-open .pin-pulse {
   animation-play-state: paused;
 }
 
+html.menu-open .smart-fab {
+  display: none;
+}
+
 .btn::after {
   content: "";
   position: absolute;
