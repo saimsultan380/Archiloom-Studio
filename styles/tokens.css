@@ -1,6 +1,6 @@
 @theme inline {
-  --font-sans: var(--font-poppins), "Poppins", sans-serif;
-  --font-display: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Montserrat", sans-serif;
   --color-charcoal: #1d1d1d;
   --color-signal: #7ed957;
   --color-action: #ffc857;
