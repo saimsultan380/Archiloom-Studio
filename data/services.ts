@@ -19,6 +19,8 @@ export type Service = {
   tags: [string, string, string];
   deliverables: [string, string, string];
   icon: IconName;
+  image: string;
+  imageAlt: string;
 };
 
 export const services: Service[] = [
@@ -31,6 +33,8 @@ export const services: Service[] = [
     tags: ["Concept design", "Plans & elevations", "Design development"],
     deliverables: ["Massing options", "Floor plans and elevations", "Design development set"],
     icon: "architecture",
+    image: "/images/courtyard-house.jpg",
+    imageAlt: "Courtyard house study in pale concrete and timber",
   },
   {
     id: "revit-drafting",
@@ -41,6 +45,8 @@ export const services: Service[] = [
     tags: ["2D documentation", "Redraws", "Renovation drawings"],
     deliverables: ["Modelled plans", "Redlines turned around", "Renovation drawing sets"],
     icon: "drafting",
+    image: "/images/commercial-edge.jpg",
+    imageAlt: "Precise commercial elevation with charcoal metal and glass",
   },
   {
     id: "permit-sets",
@@ -51,6 +57,8 @@ export const services: Service[] = [
     tags: ["Permit sets", "Construction drawings", "Coordination"],
     deliverables: ["Submission sheets", "Consultant coordination", "Issued-for-construction updates"],
     icon: "permits",
+    image: "/images/cedar-court.jpg",
+    imageAlt: "Low housing block ready for coordinated construction drawings",
   },
   {
     id: "modeling-rendering",
@@ -61,6 +69,8 @@ export const services: Service[] = [
     tags: ["3D modeling", "Photoreal renders", "Material studies"],
     deliverables: ["Coordinated model", "Still renders", "Material and light studies"],
     icon: "visualization",
+    image: "/images/hero-model.jpg",
+    imageAlt: "Photoreal render of a courtyard pavilion at dusk",
   },
   {
     id: "architectural-animation",
@@ -71,6 +81,8 @@ export const services: Service[] = [
     tags: ["Walkthroughs", "Flythroughs", "Animated visuals"],
     deliverables: ["Camera path", "Edited walkthrough", "Short flythrough cut"],
     icon: "animation",
+    image: "/images/glassline-street.jpg",
+    imageAlt: "Dusk camera path looking up a slender glass tower",
   },
   {
     id: "interior-design",
@@ -81,6 +93,8 @@ export const services: Service[] = [
     tags: ["Space planning", "Materials", "Detailing"],
     deliverables: ["Planning options", "Material palette", "Interior detail drawings"],
     icon: "interior",
+    image: "/images/interior-living.jpg",
+    imageAlt: "Oak and plaster living room with a long garden window",
   },
 ];
 

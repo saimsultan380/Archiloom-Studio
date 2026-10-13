@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { services } from "@/data/services";
@@ -40,39 +41,50 @@ export function ServicesGrid({ showHeading = true }: { showHeading?: boolean }) 
                 id={service.id}
                 data-open={openId === service.id ? "true" : undefined}
                 onClick={() => setOpenId((current) => (current === service.id ? null : service.id))}
-                className="group relative flex h-full cursor-pointer flex-col rounded-[8px] border border-n-300 bg-white p-6 transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(29,29,29,0.06)] md:p-7"
+                className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[8px] border border-n-300 bg-white transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(29,29,29,0.06)]"
               >
-                <span className="service-icon inline-flex">
-                  <Icon name={service.icon} />
-                </span>
-                <h3 className="mt-5 font-display text-[22px] font-semibold leading-snug tracking-[-0.02em]">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-[16px] leading-[1.6] text-n-700">{service.summary}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {service.tags.map((tag) => (
-                    <li key={tag} className="border border-n-300 px-2.5 py-1 font-display text-[11px] font-medium tracking-[0.06em] text-n-700 uppercase">
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] group-data-[open=true]:grid-rows-[1fr]">
-                  <div className="overflow-hidden">
-                    <ul className="space-y-1.5 pt-4 text-sm leading-relaxed text-n-700">
-                      {service.deliverables.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-n-100">
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
-                <Link
-                  href={`/contact?service=${service.id}`}
-                  onClick={(event) => event.stopPropagation()}
-                  className="group/link mt-6 inline-flex items-center gap-1.5 self-start font-display text-sm font-semibold text-charcoal"
-                >
-                  Learn more
-                  <ArrowRight className="h-4 w-4 text-signal transition-transform duration-300 ease-out group-hover/link:translate-x-1" strokeWidth={1.75} aria-hidden />
-                </Link>
+                <div className="flex flex-1 flex-col p-6 md:p-7">
+                  <span className="service-icon inline-flex">
+                    <Icon name={service.icon} />
+                  </span>
+                  <h3 className="mt-4 font-display text-[22px] font-semibold leading-snug tracking-[-0.02em]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 text-[16px] leading-[1.6] text-n-700">{service.summary}</p>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {service.tags.map((tag) => (
+                      <li key={tag} className="border border-n-300 px-2.5 py-1 font-display text-[11px] font-medium tracking-[0.06em] text-n-700 uppercase">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] group-data-[open=true]:grid-rows-[1fr]">
+                    <div className="overflow-hidden">
+                      <ul className="space-y-1.5 pt-4 text-sm leading-relaxed text-n-700">
+                        {service.deliverables.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <Link
+                    href={`/contact?service=${service.id}`}
+                    onClick={(event) => event.stopPropagation()}
+                    className="group/link mt-6 inline-flex items-center gap-1.5 self-start font-display text-sm font-semibold text-charcoal"
+                  >
+                    Learn more
+                    <ArrowRight className="h-4 w-4 text-signal transition-transform duration-300 ease-out group-hover/link:translate-x-1" strokeWidth={1.75} aria-hidden />
+                  </Link>
+                </div>
               </article>
             </Reveal>
           ))}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { ServicesExtras } from "@/components/ServicesExtras";
 import { ServicesGrid } from "@/components/ServicesGrid";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function ServicesPage() {
         imageAlt="Low courtyard house in pale concrete and timber"
       />
       <ServicesGrid showHeading={false} />
+      <ServicesExtras />
     </main>
   );
 }
