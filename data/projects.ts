@@ -13,116 +13,209 @@ export type ProjectFrame = {
   alt: string;
 };
 
+export type ProjectVideo = {
+  /** YouTube / Vimeo / hosted URL. Empty until the client sends the completion video. */
+  src: string;
+  poster: string;
+  label: string;
+};
+
 export type Project = {
   id: string;
   name: string;
   category: Exclude<ProjectCategory, "All">;
+  location: string;
+  timeline: string;
   summary: string;
+  brief: string;
   image: string;
   imageAlt: string;
-  imageLabel: string;
-  tone: string;
-  frames: [ProjectFrame, ProjectFrame, ProjectFrame];
-  /** PLACEHOLDER — replace with a real project photograph or render. */
+  frames: ProjectFrame[];
+  video: ProjectVideo;
+  sourceNote: string;
+  /** Draft content until client photography and videos arrive. */
   placeholder: true;
 };
 
-/** PLACEHOLDER studies for layout approval. Not a record of completed commissions. */
+/**
+ * Cover is only used for the index card + page hero (not repeated in the gallery).
+ * Gallery frames are unique per project and never reuse another project’s images.
+ * Video poster uses a dedicated frame that is also not in the gallery scroll.
+ * Finish Line + Masala seeded from Behance: https://www.behance.net/zahidnaveed
+ */
 export const projects: Project[] = [
+  {
+    id: "finish-line-haircuts",
+    name: "Finish Line Haircuts",
+    category: "Interior",
+    location: "Los Angeles, USA",
+    timeline: "2023 — 2024",
+    summary:
+      "A high-energy haircut shop inspired by car racing — an immersive interior that borrows the thrill and speed of motorsports.",
+    brief:
+      "The concept turns a neighborhood cut shop into a race-day pit stop: dark shell, red accents, mirrored stations and lighting that feels fast without shouting. Layout, material and brand cues stay coordinated so the room reads as one idea from the street through to the chair.",
+    image: "/images/finish-line-exterior.jpg",
+    imageAlt: "Racing-inspired haircut shop storefront at dusk",
+    frames: [
+      { src: "/images/finish-line-salon.jpg", alt: "Salon floor with racing stripe lighting and barber stations" },
+      { src: "/images/finish-line-detail.jpg", alt: "Detail of a barber station with chrome and red accents" },
+    ],
+    video: {
+      src: "",
+      poster: "/images/finish-line-waiting.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft from Behance: Finish Line Haircuts — LA, USA. Replace images and video when the client sends the raw set.",
+    placeholder: true,
+  },
+  {
+    id: "masala-pizza-schaumburg",
+    name: "Masala Pizza",
+    category: "Commercial",
+    location: "Schaumburg, IL, USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A fast-casual Indian pizza restaurant fit-out for Schaumburg — warm, open and built for speed of service.",
+    brief:
+      "The brief is a compact commercial interior that carries South Asian flavour into a clear pizza concept: open prep, easy seating and a room that feels welcoming from the entrance. Draft layout notes hold until the client sends drawings, finishes and the completion film.",
+    image: "/images/masala-exterior.jpg",
+    imageAlt: "Masala Pizza restaurant exterior at golden hour",
+    frames: [
+      { src: "/images/masala-dining.jpg", alt: "Dining room with booth seating and soft pendants" },
+      { src: "/images/masala-counter.jpg", alt: "Service counter and pizza prep area" },
+    ],
+    video: {
+      src: "",
+      poster: "/images/masala-prep.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft from Behance profile listing: Masala Pizza — Schaumburg, IL, USA. Replace assets when the client sends the raw project.",
+    placeholder: true,
+  },
   {
     id: "northline-residence",
     name: "Northline Residence",
     category: "Architecture",
-    summary: "A courtyard house study: long elevations, a quiet plan, and daylight held between two wings.",
+    location: "Islamabad, Pakistan",
+    timeline: "2022 — 2023",
+    summary:
+      "A courtyard house study: long elevations, a quiet plan, and daylight held between two wings.",
+    brief:
+      "Two pale wings frame a shared court so living spaces look inward to light and planting. Simple massing, deep reveals and a calm material palette keep the house readable from the street and private inside.",
     image: "/images/courtyard-house.jpg",
     imageAlt: "Low courtyard house in pale concrete and timber",
-    imageLabel: "Render — Residential, 16:10",
-    tone: "#2a2a2a",
-    frames: [
-      { src: "/images/courtyard-house.jpg", alt: "Low courtyard house in pale concrete and timber" },
-      { src: "/images/northline-court.jpg", alt: "Courtyard looking toward a long glazed wing" },
-      { src: "/images/outdoor-terrace.jpg", alt: "Terrace and pool beside the house" },
-    ],
+    frames: [{ src: "/images/northline-court.jpg", alt: "Courtyard looking toward a long glazed wing" }],
+    video: {
+      src: "",
+      poster: "/images/outdoor-terrace.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
   {
     id: "harbor-exchange",
     name: "Harbor Exchange",
     category: "Commercial",
-    summary: "A workplace study for a waterfront floor plate, with a clear core and a public edge.",
+    location: "Karachi, Pakistan",
+    timeline: "2023 — 2024",
+    summary:
+      "A workplace study for a waterfront floor plate, with a clear core and a public edge.",
+    brief:
+      "The plan keeps a clean core and pushes meeting and lounge space to the glazed edge so the waterfront is shared. Charcoal metal, oak and clear glass set a calm commercial tone.",
     image: "/images/commercial-edge.jpg",
     imageAlt: "Waterfront workplace with charcoal metal and floor-to-ceiling glass",
-    imageLabel: "Render — Commercial, 16:10",
-    tone: "#333333",
-    frames: [
-      { src: "/images/commercial-edge.jpg", alt: "Waterfront workplace with charcoal metal and floor-to-ceiling glass" },
-      { src: "/images/harbor-interior.jpg", alt: "Harbor workplace interior with a long oak table" },
-      { src: "/images/glass-tower.jpg", alt: "Glass volume at dusk" },
-    ],
+    frames: [{ src: "/images/harbor-interior.jpg", alt: "Harbor workplace interior with a long oak table" }],
+    video: {
+      src: "",
+      poster: "/images/harbor-lounge.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
   {
     id: "atelier-house",
     name: "Atelier House",
     category: "Interior",
-    summary: "An interior study in timber, plaster and a single run of joinery.",
+    location: "Lahore, Pakistan",
+    timeline: "2023 — 2024",
+    summary:
+      "An interior study in timber, plaster and a single run of joinery.",
+    brief:
+      "One material story carries the house: oak joinery, soft plaster and garden light. Furniture and openings stay quiet so the rooms feel continuous from living through dining.",
     image: "/images/interior-living.jpg",
     imageAlt: "Living room in oak and plaster with a long garden window",
-    imageLabel: "Render — Interior, 16:10",
-    tone: "#242424",
-    frames: [
-      { src: "/images/interior-living.jpg", alt: "Living room in oak and plaster with a long garden window" },
-      { src: "/images/atelier-joinery.jpg", alt: "Oak joinery and linen seating in daylight" },
-      { src: "/images/stone-lobby.jpg", alt: "Stone and timber interior" },
-    ],
+    frames: [{ src: "/images/atelier-joinery.jpg", alt: "Oak joinery and linen seating in daylight" }],
+    video: {
+      src: "",
+      poster: "/images/atelier-nook.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
   {
     id: "cedar-court",
     name: "Cedar Court",
     category: "Architecture",
-    summary: "A low housing study organised around a shared court and a simple repeated bay.",
+    location: "Islamabad, Pakistan",
+    timeline: "2021 — 2023",
+    summary:
+      "A low housing study organised around a shared court and a simple repeated bay.",
+    brief:
+      "Repeated bays and a shared court give the block a clear rhythm. Cedar and pale brick keep elevations warm; the court holds arrival, planting and neighbourly outlook.",
     image: "/images/hero-residence.jpg",
     imageAlt: "Contemporary residence with warm interior light at dusk",
-    imageLabel: "Render — Courtyard housing, 16:10",
-    tone: "#2e2e2e",
-    frames: [
-      { src: "/images/hero-residence.jpg", alt: "Contemporary residence with warm interior light at dusk" },
-      { src: "/images/cedar-court.jpg", alt: "Low courtyard housing with repeated bays" },
-      { src: "/images/courtyard-house.jpg", alt: "Shared court between pale wings" },
-    ],
+    frames: [{ src: "/images/cedar-court.jpg", alt: "Low courtyard housing with repeated bays" }],
+    video: {
+      src: "",
+      poster: "/images/cedar-entry.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
   {
     id: "meridian-lobby",
     name: "Meridian Lobby",
     category: "Interior",
-    summary: "A lobby study: stone, a long bench, and light brought down to standing height.",
+    location: "Dubai, UAE",
+    timeline: "2024 — 2025",
+    summary:
+      "A lobby study: stone, a long bench, and light brought down to standing height.",
+    brief:
+      "Pale stone and a long timber line set the arrival mood. Light sits at standing height so the lobby feels calm and measured before guests move into the tower.",
     image: "/images/stone-lobby.jpg",
     imageAlt: "Stone lobby with a long timber bench",
-    imageLabel: "Render — Lobby, 16:10",
-    tone: "#383838",
-    frames: [
-      { src: "/images/stone-lobby.jpg", alt: "Stone lobby with a long timber bench" },
-      { src: "/images/meridian-bench.jpg", alt: "Pale stone wall and a long timber bench" },
-      { src: "/images/interior-living.jpg", alt: "Quiet seating in warm daylight" },
-    ],
+    frames: [{ src: "/images/meridian-bench.jpg", alt: "Pale stone wall and a long timber bench" }],
+    video: {
+      src: "",
+      poster: "/images/meridian-desk.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
   {
     id: "glassline-tower",
     name: "Glassline Tower",
     category: "Visualization",
-    summary: "A tower study used to test massing, glass tone and a dusk camera path.",
+    location: "Toronto, Canada",
+    timeline: "2024",
+    summary:
+      "A tower study used to test massing, glass tone and a dusk camera path.",
+    brief:
+      "Massing, glass tone and dusk lighting were tested as a short visualization pass — street, plaza and upward views kept in one coherent sequence for client review.",
     image: "/images/glass-tower.jpg",
     imageAlt: "Slender glass tower at dusk",
-    imageLabel: "Render — Tower study, 16:10",
-    tone: "#262626",
-    frames: [
-      { src: "/images/glass-tower.jpg", alt: "Slender glass tower at dusk" },
-      { src: "/images/glassline-street.jpg", alt: "Looking up the glass tower at dusk" },
-      { src: "/images/commercial-edge.jpg", alt: "Glass and charcoal metal at the street" },
-    ],
+    frames: [{ src: "/images/glassline-street.jpg", alt: "Looking up the glass tower at dusk" }],
+    video: {
+      src: "",
+      poster: "/images/glassline-plaza.jpg",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
     placeholder: true,
   },
 ];

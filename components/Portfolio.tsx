@@ -44,7 +44,7 @@ export function Portfolio() {
           </div>
         </div>
         <p className="text-link mt-4 inline-block font-display text-[15px] font-medium">
-          {project.name}. {project.category}
+          {project.name}. {project.location}
         </p>
       </button>
     );
@@ -84,7 +84,7 @@ export function Portfolio() {
             );
           })}
         </div>
-        <p className="mt-4 text-sm text-n-700">Illustrative studies for this design draft. Client photography will replace them.</p>
+        <p className="mt-4 text-sm text-n-700">Draft case studies seeded from Behance. Client photography and completion videos will replace them.</p>
         <div id="work-grid" className="mt-8">
           {visible.length === 0 ? (
             <p className="text-n-700">No studies in this category yet.</p>
@@ -126,12 +126,13 @@ export function Portfolio() {
             <div className="relative aspect-[16/10] overflow-hidden border border-n-300">
               <Image src={selected.image} alt={selected.imageAlt} fill className="object-cover" sizes="720px" />
             </div>
-            <p className="mt-5 font-display text-sm font-semibold tracking-[0.08em] text-n-700 uppercase">{selected.category}</p>
+            <p className="mt-5 font-display text-sm font-semibold tracking-[0.08em] text-n-700 uppercase">
+              {selected.location} · {selected.timeline}
+            </p>
             <p className="mt-3 text-[16px] leading-[1.6]">{selected.summary}</p>
-            <p className="mt-3 text-sm text-n-700">Placeholder study for layout approval.</p>
             <div className="mt-8">
               <Button href={`/projects/${selected.id}`} onClick={() => setSelected(null)}>
-                Open project
+                Open case study
               </Button>
               <Button href="/contact" variant="secondary" className="ml-3" onClick={() => setSelected(null)}>
                 Start a Project
