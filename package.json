@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "map": "node scripts/generate-map.mjs"
+    "map": "node scripts/generate-map.mjs",
+    "compress-images": "node scripts/compress-images.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19.1.9",
     "eslint": "^9.36.0",
     "eslint-config-next": "^15.5.4",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2"
   }

@@ -136,7 +136,10 @@ export function ProjectGallery({
                   priority
                   className="object-contain"
                   sizes="100vw"
-                  unoptimized={items[active].src.endsWith(".gif")}
+                  unoptimized={
+                    items[active].src.endsWith(".gif") ||
+                    items[active].src.includes("-completion.")
+                  }
                 />
               </div>
 
@@ -189,7 +192,9 @@ export function ProjectGallery({
                     fill
                     className="object-cover"
                     sizes="96px"
-                    unoptimized={item.src.endsWith(".gif")}
+                    unoptimized={
+                      item.src.endsWith(".gif") || item.src.includes("-completion.")
+                    }
                   />
                 </button>
               ))}
@@ -252,7 +257,7 @@ export function ProjectGalleryTile({
             ? "(min-width: 1440px) 680px, (min-width: 768px) 50vw, 100vw"
             : "(min-width: 1440px) 1360px, 100vw"
         }
-        unoptimized={frame.src.endsWith(".gif")}
+        unoptimized={frame.src.endsWith(".gif") || frame.src.includes("-completion.")}
       />
       <span className="pointer-events-none absolute inset-0 bg-charcoal/0 transition-colors duration-300 group-hover:bg-charcoal/10" />
       <span className="pointer-events-none absolute right-4 bottom-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-charcoal opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100 md:hidden">

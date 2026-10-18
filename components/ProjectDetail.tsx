@@ -34,7 +34,10 @@ export function ProjectDetail({
     });
   }
   const gifIndex =
-    project.video.src && (project.video.kind === "gif" || project.video.src.endsWith(".gif"))
+    project.video.src &&
+    (project.video.kind === "gif" ||
+      project.video.src.endsWith(".gif") ||
+      project.video.src.includes("-completion."))
       ? galleryItems.length - 1
       : -1;
 

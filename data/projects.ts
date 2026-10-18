@@ -69,7 +69,7 @@ export const projects: Project[] = [
     imageAlt: "Masala Pizza — project cover",
     frames: numberedFrames("masala", 2, 7, "Masala Pizza"),
     video: {
-      src: "/images/masala-completion.gif",
+      src: "/images/masala-completion.webp",
       poster: "/images/masala-01.webp",
       label: "Completion loop",
       kind: "gif",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     imageAlt: "Finish Line Haircuts — project cover",
     frames: numberedFrames("finish-line", 2, 7, "Finish Line Haircuts"),
     video: {
-      src: "/images/finish-line-completion.gif",
+      src: "/images/finish-line-completion.webp",
       poster: "/images/finish-line-01.webp",
       label: "Completion loop",
       kind: "gif",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     imageAlt: "Take Burger — project cover",
     frames: numberedFrames("take-burger", 2, 10, "Take Burger"),
     video: {
-      src: "/images/take-burger-completion.gif",
+      src: "/images/take-burger-completion.webp",
       poster: "/images/take-burger-01.webp",
       label: "Completion loop",
       kind: "gif",
@@ -173,19 +173,12 @@ export const projects: Project[] = [
       "A restaurant fit-out with a strong dining atmosphere — layered lighting, defined seating and a clear service path.",
     brief:
       "The interior focuses on guest comfort and brand presence through finish, lighting and a plan that supports both dining and service flow.",
-    image: "/images/bin-yaber-01.png",
+    image: "/images/bin-yaber-01.webp",
     imageAlt: "Bin Yaber — project cover",
-    frames: [
-      { src: "/images/bin-yaber-02.png", alt: "Bin Yaber — view 01" },
-      { src: "/images/bin-yaber-03.png", alt: "Bin Yaber — view 02" },
-      { src: "/images/bin-yaber-04.png", alt: "Bin Yaber — view 03" },
-      { src: "/images/bin-yaber-05.png", alt: "Bin Yaber — view 04" },
-      { src: "/images/bin-yaber-06.png", alt: "Bin Yaber — view 05" },
-      { src: "/images/bin-yaber-07.png", alt: "Bin Yaber — view 06" },
-    ],
+    frames: numberedFrames("bin-yaber", 2, 7, "Bin Yaber"),
     video: {
       src: "",
-      poster: "/images/bin-yaber-02.png",
+      poster: "/images/bin-yaber-02.webp",
       label: "Completion video — forthcoming",
     },
     sourceNote: "",
