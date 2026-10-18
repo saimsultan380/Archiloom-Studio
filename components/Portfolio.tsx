@@ -15,9 +15,6 @@ export function Portfolio() {
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
   const [selected, setSelected] = useState<Project | null>(null);
   const visible = projects.filter((project) => filter === "All" || project.category === filter);
-  const showOffset = filter === "All" && visible.length > 3;
-  const firstRow = showOffset ? visible.slice(0, 3) : visible;
-  const secondRow = showOffset ? visible.slice(3) : [];
 
   function card(project: Project) {
     return (
@@ -97,15 +94,10 @@ export function Portfolio() {
                   </div>
                 ))}
               </div>
-              <div className="hidden flex-col gap-14 md:flex">
-                <div className="grid grid-cols-3 gap-8">{firstRow.map((project) => <div key={project.id}>{card(project)}</div>)}</div>
-                {secondRow.length > 0 ? (
-                  <div className="grid grid-cols-3 gap-8 pl-[7%]">
-                    {secondRow.map((project) => (
-                      <div key={project.id}>{card(project)}</div>
-                    ))}
-                  </div>
-                ) : null}
+              <div className="hidden grid-cols-3 gap-x-8 gap-y-14 md:grid">
+                {visible.map((project) => (
+                  <div key={project.id}>{card(project)}</div>
+                ))}
               </div>
             </>
           )}

@@ -14,10 +14,12 @@ export type ProjectFrame = {
 };
 
 export type ProjectVideo = {
-  /** YouTube / Vimeo / hosted URL. Empty until the client sends the completion video. */
+  /** Video URL, or a .gif completion loop. Empty until the client sends media. */
   src: string;
   poster: string;
   label: string;
+  /** Use "gif" for animated completion loops (rendered as an image, not a video tag). */
+  kind?: "video" | "gif";
 };
 
 export type Project = {
@@ -33,41 +35,26 @@ export type Project = {
   frames: ProjectFrame[];
   video: ProjectVideo;
   sourceNote: string;
-  /** Draft content until client photography and videos arrive. */
-  placeholder: true;
+  placeholder: boolean;
 };
 
+function numberedFrames(prefix: string, from: number, to: number, label: string): ProjectFrame[] {
+  const frames: ProjectFrame[] = [];
+  for (let n = from; n <= to; n += 1) {
+    const id = String(n).padStart(2, "0");
+    frames.push({
+      src: `/images/${prefix}-${id}.webp`,
+      alt: `${label} — view ${n - from + 1}`,
+    });
+  }
+  return frames;
+}
+
 /**
- * Cover is only used for the index card + page hero (not repeated in the gallery).
- * Gallery frames are unique per project and never reuse another project’s images.
- * Video poster uses a dedicated frame that is also not in the gallery scroll.
- * Finish Line + Masala seeded from Behance: https://www.behance.net/zahidnaveed
+ * Live client projects only. Cover is hero/index; gallery frames never repeat the cover.
+ * Completion GIF is separate from the gallery scroll.
  */
 export const projects: Project[] = [
-  {
-    id: "finish-line-haircuts",
-    name: "Finish Line Haircuts",
-    category: "Interior",
-    location: "Los Angeles, USA",
-    timeline: "2023 — 2024",
-    summary:
-      "A high-energy haircut shop inspired by car racing — an immersive interior that borrows the thrill and speed of motorsports.",
-    brief:
-      "The concept turns a neighborhood cut shop into a race-day pit stop: dark shell, red accents, mirrored stations and lighting that feels fast without shouting. Layout, material and brand cues stay coordinated so the room reads as one idea from the street through to the chair.",
-    image: "/images/finish-line-exterior.jpg",
-    imageAlt: "Racing-inspired haircut shop storefront at dusk",
-    frames: [
-      { src: "/images/finish-line-salon.jpg", alt: "Salon floor with racing stripe lighting and barber stations" },
-      { src: "/images/finish-line-detail.jpg", alt: "Detail of a barber station with chrome and red accents" },
-    ],
-    video: {
-      src: "",
-      poster: "/images/finish-line-waiting.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft from Behance: Finish Line Haircuts — LA, USA. Replace images and video when the client sends the raw set.",
-    placeholder: true,
-  },
   {
     id: "masala-pizza-schaumburg",
     name: "Masala Pizza",
@@ -77,145 +64,131 @@ export const projects: Project[] = [
     summary:
       "A fast-casual Indian pizza restaurant fit-out for Schaumburg — warm, open and built for speed of service.",
     brief:
-      "The brief is a compact commercial interior that carries South Asian flavour into a clear pizza concept: open prep, easy seating and a room that feels welcoming from the entrance. Draft layout notes hold until the client sends drawings, finishes and the completion film.",
-    image: "/images/masala-exterior.jpg",
-    imageAlt: "Masala Pizza restaurant exterior at golden hour",
+      "A compact commercial interior that carries South Asian flavour into a clear pizza concept: open prep, easy seating and a room that feels welcoming from the entrance.",
+    image: "/images/masala-01.webp",
+    imageAlt: "Masala Pizza — project cover",
+    frames: numberedFrames("masala", 2, 7, "Masala Pizza"),
+    video: {
+      src: "/images/masala-completion.gif",
+      poster: "/images/masala-01.webp",
+      label: "Completion loop",
+      kind: "gif",
+    },
+    sourceNote: "",
+    placeholder: false,
+  },
+  {
+    id: "finish-line-haircuts",
+    name: "Finish Line Haircuts",
+    category: "Interior",
+    location: "Los Angeles, USA",
+    timeline: "2023 — 2024",
+    summary:
+      "A high-energy haircut shop inspired by car racing — an immersive interior that borrows the thrill and speed of motorsports.",
+    brief:
+      "The concept turns a neighborhood cut shop into a race-day pit stop: dark shell, red accents, mirrored stations and lighting that feels fast without shouting.",
+    image: "/images/finish-line-01.webp",
+    imageAlt: "Finish Line Haircuts — project cover",
+    frames: numberedFrames("finish-line", 2, 7, "Finish Line Haircuts"),
+    video: {
+      src: "/images/finish-line-completion.gif",
+      poster: "/images/finish-line-01.webp",
+      label: "Completion loop",
+      kind: "gif",
+    },
+    sourceNote: "",
+    placeholder: false,
+  },
+  {
+    id: "odoe-desserts",
+    name: "Odoe Desserts",
+    category: "Commercial",
+    location: "USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A dessert café fit-out with a clear service counter, soft seating and a bright, inviting room for quick visits.",
+    brief:
+      "The design keeps the counter as the focus, with warm finishes and open sightlines so the space reads cleanly from entry through seating.",
+    image: "/images/odoe-01.webp",
+    imageAlt: "Odoe Desserts — project cover",
+    frames: numberedFrames("odoe", 2, 14, "Odoe Desserts"),
+    video: {
+      src: "",
+      poster: "/images/odoe-02.webp",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "",
+    placeholder: false,
+  },
+  {
+    id: "cinnabon",
+    name: "Cinnabon",
+    category: "Commercial",
+    location: "USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A Cinnabon retail interior organised around the bake counter, display and a compact guest area.",
+    brief:
+      "Material and lighting support the brand moment at the counter while keeping circulation clear for queue service.",
+    image: "/images/cinnabon-01.webp",
+    imageAlt: "Cinnabon — project cover",
+    frames: numberedFrames("cinnabon", 2, 11, "Cinnabon"),
+    video: {
+      src: "",
+      poster: "/images/cinnabon-02.webp",
+      label: "Completion video — forthcoming",
+    },
+    sourceNote: "",
+    placeholder: false,
+  },
+  {
+    id: "take-burger",
+    name: "Take Burger",
+    category: "Commercial",
+    location: "USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A burger restaurant interior built for speed of service — bold finishes, clear queueing and an open kitchen edge.",
+    brief:
+      "The room balances high-energy brand cues with a practical plan for orders, pickup and short-stay dining.",
+    image: "/images/take-burger-01.webp",
+    imageAlt: "Take Burger — project cover",
+    frames: numberedFrames("take-burger", 2, 10, "Take Burger"),
+    video: {
+      src: "/images/take-burger-completion.gif",
+      poster: "/images/take-burger-01.webp",
+      label: "Completion loop",
+      kind: "gif",
+    },
+    sourceNote: "",
+    placeholder: false,
+  },
+  {
+    id: "bin-yaber",
+    name: "Bin Yaber",
+    category: "Commercial",
+    location: "USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A restaurant fit-out with a strong dining atmosphere — layered lighting, defined seating and a clear service path.",
+    brief:
+      "The interior focuses on guest comfort and brand presence through finish, lighting and a plan that supports both dining and service flow.",
+    image: "/images/bin-yaber-01.png",
+    imageAlt: "Bin Yaber — project cover",
     frames: [
-      { src: "/images/masala-dining.jpg", alt: "Dining room with booth seating and soft pendants" },
-      { src: "/images/masala-counter.jpg", alt: "Service counter and pizza prep area" },
+      { src: "/images/bin-yaber-02.png", alt: "Bin Yaber — view 01" },
+      { src: "/images/bin-yaber-03.png", alt: "Bin Yaber — view 02" },
+      { src: "/images/bin-yaber-04.png", alt: "Bin Yaber — view 03" },
+      { src: "/images/bin-yaber-05.png", alt: "Bin Yaber — view 04" },
+      { src: "/images/bin-yaber-06.png", alt: "Bin Yaber — view 05" },
+      { src: "/images/bin-yaber-07.png", alt: "Bin Yaber — view 06" },
     ],
     video: {
       src: "",
-      poster: "/images/masala-prep.jpg",
+      poster: "/images/bin-yaber-02.png",
       label: "Completion video — forthcoming",
     },
-    sourceNote: "Draft from Behance profile listing: Masala Pizza — Schaumburg, IL, USA. Replace assets when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "northline-residence",
-    name: "Northline Residence",
-    category: "Architecture",
-    location: "Islamabad, Pakistan",
-    timeline: "2022 — 2023",
-    summary:
-      "A courtyard house study: long elevations, a quiet plan, and daylight held between two wings.",
-    brief:
-      "Two pale wings frame a shared court so living spaces look inward to light and planting. Simple massing, deep reveals and a calm material palette keep the house readable from the street and private inside.",
-    image: "/images/courtyard-house.jpg",
-    imageAlt: "Low courtyard house in pale concrete and timber",
-    frames: [{ src: "/images/northline-court.jpg", alt: "Courtyard looking toward a long glazed wing" }],
-    video: {
-      src: "",
-      poster: "/images/outdoor-terrace.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "harbor-exchange",
-    name: "Harbor Exchange",
-    category: "Commercial",
-    location: "Karachi, Pakistan",
-    timeline: "2023 — 2024",
-    summary:
-      "A workplace study for a waterfront floor plate, with a clear core and a public edge.",
-    brief:
-      "The plan keeps a clean core and pushes meeting and lounge space to the glazed edge so the waterfront is shared. Charcoal metal, oak and clear glass set a calm commercial tone.",
-    image: "/images/commercial-edge.jpg",
-    imageAlt: "Waterfront workplace with charcoal metal and floor-to-ceiling glass",
-    frames: [{ src: "/images/harbor-interior.jpg", alt: "Harbor workplace interior with a long oak table" }],
-    video: {
-      src: "",
-      poster: "/images/harbor-lounge.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "atelier-house",
-    name: "Atelier House",
-    category: "Interior",
-    location: "Lahore, Pakistan",
-    timeline: "2023 — 2024",
-    summary:
-      "An interior study in timber, plaster and a single run of joinery.",
-    brief:
-      "One material story carries the house: oak joinery, soft plaster and garden light. Furniture and openings stay quiet so the rooms feel continuous from living through dining.",
-    image: "/images/interior-living.jpg",
-    imageAlt: "Living room in oak and plaster with a long garden window",
-    frames: [{ src: "/images/atelier-joinery.jpg", alt: "Oak joinery and linen seating in daylight" }],
-    video: {
-      src: "",
-      poster: "/images/atelier-nook.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "cedar-court",
-    name: "Cedar Court",
-    category: "Architecture",
-    location: "Islamabad, Pakistan",
-    timeline: "2021 — 2023",
-    summary:
-      "A low housing study organised around a shared court and a simple repeated bay.",
-    brief:
-      "Repeated bays and a shared court give the block a clear rhythm. Cedar and pale brick keep elevations warm; the court holds arrival, planting and neighbourly outlook.",
-    image: "/images/hero-residence.jpg",
-    imageAlt: "Contemporary residence with warm interior light at dusk",
-    frames: [{ src: "/images/cedar-court.jpg", alt: "Low courtyard housing with repeated bays" }],
-    video: {
-      src: "",
-      poster: "/images/cedar-entry.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "meridian-lobby",
-    name: "Meridian Lobby",
-    category: "Interior",
-    location: "Dubai, UAE",
-    timeline: "2024 — 2025",
-    summary:
-      "A lobby study: stone, a long bench, and light brought down to standing height.",
-    brief:
-      "Pale stone and a long timber line set the arrival mood. Light sits at standing height so the lobby feels calm and measured before guests move into the tower.",
-    image: "/images/stone-lobby.jpg",
-    imageAlt: "Stone lobby with a long timber bench",
-    frames: [{ src: "/images/meridian-bench.jpg", alt: "Pale stone wall and a long timber bench" }],
-    video: {
-      src: "",
-      poster: "/images/meridian-desk.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
-  },
-  {
-    id: "glassline-tower",
-    name: "Glassline Tower",
-    category: "Visualization",
-    location: "Toronto, Canada",
-    timeline: "2024",
-    summary:
-      "A tower study used to test massing, glass tone and a dusk camera path.",
-    brief:
-      "Massing, glass tone and dusk lighting were tested as a short visualization pass — street, plaza and upward views kept in one coherent sequence for client review.",
-    image: "/images/glass-tower.jpg",
-    imageAlt: "Slender glass tower at dusk",
-    frames: [{ src: "/images/glassline-street.jpg", alt: "Looking up the glass tower at dusk" }],
-    video: {
-      src: "",
-      poster: "/images/glassline-plaza.jpg",
-      label: "Completion video — forthcoming",
-    },
-    sourceNote: "Draft study for layout. Replace when the client sends the raw project.",
-    placeholder: true,
+    sourceNote: "",
+    placeholder: false,
   },
 ];
