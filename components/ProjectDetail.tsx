@@ -106,60 +106,60 @@ export function ProjectDetail({
             onLeave={onLeave}
           />
 
-          <section className="mx-auto w-full max-w-[1440px] px-6 py-14 md:px-10 md:py-20">
-            <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
-              {project.video.kind === "gif" ? "Completion loop" : "Completion video"}
-            </p>
-            <h2 className="mt-3 font-display text-[clamp(28px,3.5vw,40px)] font-semibold tracking-[-0.03em]">
-              Walk the finished room.
-            </h2>
-            {gifIndex >= 0 ? (
-              <div className="mt-8">
-                <ProjectGalleryTile
-                  frame={galleryItems[gifIndex]}
-                  tall
-                  onOpen={() => openAt(gifIndex)}
-                  onEnter={onEnter}
-                  onMove={onMove}
-                  onLeave={onLeave}
-                />
-              </div>
-            ) : project.video.src ? (
-              <div className="relative mt-8 aspect-video overflow-hidden bg-charcoal">
-                <video
-                  className="h-full w-full object-cover"
-                  controls
-                  playsInline
-                  poster={project.video.poster}
-                  src={project.video.src}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            ) : (
-              <div className="relative mt-8 aspect-video overflow-hidden bg-charcoal">
+          {gifIndex >= 0 || project.video.src ? (
+            <section className="mx-auto w-full max-w-[1440px] px-6 py-14 md:px-10 md:py-20">
+              <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
+                {project.video.kind === "gif" || project.video.src.includes("-completion.")
+                  ? "Completion loop"
+                  : "Completion video"}
+              </p>
+              <h2 className="mt-3 font-display text-[clamp(28px,3.5vw,40px)] font-semibold tracking-[-0.03em]">
+                Walk the finished room.
+              </h2>
+              {gifIndex >= 0 ? (
+                <div className="mt-8">
+                  <ProjectGalleryTile
+                    frame={galleryItems[gifIndex]}
+                    tall
+                    onOpen={() => openAt(gifIndex)}
+                    onEnter={onEnter}
+                    onMove={onMove}
+                    onLeave={onLeave}
+                  />
+                </div>
+              ) : (
+                <div className="relative mt-8 aspect-video overflow-hidden bg-charcoal">
+                  <video
+                    className="h-full w-full object-cover"
+                    controls
+                    playsInline
+                    poster={project.video.poster}
+                    src={project.video.src}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+            </section>
+          ) : project.video.poster ? (
+            <section className="mx-auto w-full max-w-[1440px] px-6 py-14 md:px-10 md:py-20">
+              <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
+                Selected view
+              </p>
+              <h2 className="mt-3 font-display text-[clamp(28px,3.5vw,40px)] font-semibold tracking-[-0.03em]">
+                Walk the finished room.
+              </h2>
+              <div className="relative mt-8 aspect-video overflow-hidden bg-n-100">
                 <Image
                   src={project.video.poster}
-                  alt=""
+                  alt={`${project.name} — selected view`}
                   fill
-                  className="object-cover opacity-50"
+                  className="object-cover"
                   sizes="(min-width: 1440px) 1360px, 100vw"
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
-                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-white/40 font-display text-sm tracking-[0.12em] uppercase">
-                    Play
-                  </span>
-                  <p className="mt-5 font-display text-[15px] font-semibold tracking-[0.08em] uppercase">
-                    {project.video.label}
-                  </p>
-                  <p className="mt-2 max-w-md text-[15px] text-white/70">
-                    Drop the completion film here when the client sends it. The poster stays until
-                    then.
-                  </p>
-                </div>
               </div>
-            )}
-          </section>
+            </section>
+          ) : null}
 
           <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-6 px-6 py-8 md:px-10">
             <Link

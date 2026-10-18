@@ -47,7 +47,7 @@ export function Footer() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
 
   return (
-    <footer className="relative overflow-hidden bg-charcoal text-white">
+    <footer id="site-footer" className="relative overflow-hidden bg-charcoal text-white">
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden />
       <MapBackdrop place="left" />
       <div className="relative mx-auto w-full max-w-[1280px] px-6 pt-16 md:pt-24">
