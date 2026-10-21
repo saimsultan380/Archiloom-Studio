@@ -34,7 +34,7 @@ export function SmartFab() {
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "smart-fab fixed right-5 bottom-5 z-[65] inline-flex h-14 w-14 items-center justify-center rounded-full bg-action text-charcoal shadow-[0_12px_28px_rgba(255,200,87,0.45)] transition-[transform,opacity] duration-300 hover:scale-[1.05] md:right-8 md:bottom-8",
+          "smart-fab fixed right-4 bottom-4 z-[65] inline-flex h-11 w-11 items-center justify-center rounded-full bg-action text-charcoal shadow-[0_8px_20px_rgba(255,200,87,0.4)] transition-[transform,opacity] duration-300 hover:scale-[1.05] md:right-6 md:bottom-6",
           nearFooter && "pointer-events-none translate-y-3 opacity-0",
         )}
         aria-label="Get a Quote"
@@ -42,7 +42,7 @@ export function SmartFab() {
         aria-expanded={open}
         tabIndex={nearFooter ? -1 : 0}
       >
-        <MessageSquare className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+        <MessageSquare className="h-4 w-4" strokeWidth={1.75} aria-hidden />
       </button>
       <Modal open={open} title="Request a quote" onClose={() => setOpen(false)}>
         <p className="mb-6 text-[15px] leading-[1.6] text-n-700">

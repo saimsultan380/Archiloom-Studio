@@ -11,7 +11,7 @@ export function ClientsGrid() {
           <div className="lg:col-span-4">
             <SectionHeading label="Clients" title={<>Our <span className="title-accent">Clients</span></>} />
             <p className="mt-6 text-[17px] leading-[1.6] text-n-700">
-              Marks shown are placeholders for practices and developers.
+              Brands and operators we design interiors, stores and spaces for across the US, UAE, KSA, UK and beyond.
             </p>
           </div>
           <ul className="grid grid-cols-2 border-t border-l border-n-300 sm:grid-cols-3 lg:col-span-8">
@@ -19,12 +19,9 @@ export function ClientsGrid() {
               <li
                 key={client.id}
                 aria-label={client.name}
-                className="group flex h-24 items-center justify-center border-r border-b border-n-300 px-4 sm:h-28"
+                className="group flex h-24 items-center justify-center border-r border-b border-n-300 px-3 sm:h-28 sm:px-4"
               >
-                <ClientLogo
-                  id={client.id}
-                  className="h-8 w-auto max-w-[168px] text-n-500 transition-colors duration-300 group-hover:text-charcoal"
-                />
+                <ClientLogo id={client.id} name={client.name} logo={client.logo} />
               </li>
             ))}
           </ul>

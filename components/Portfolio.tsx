@@ -14,7 +14,11 @@ export function Portfolio() {
   const [filter, setFilter] = useState<ProjectCategory>("All");
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
   const [selected, setSelected] = useState<Project | null>(null);
-  const visible = projects.filter((project) => filter === "All" || project.category === filter);
+  /** Homepage shows three rows of three cards; full set lives on /projects. */
+  const HOME_LIMIT = 9;
+  const visible = projects
+    .filter((project) => filter === "All" || project.category === filter)
+    .slice(0, HOME_LIMIT);
 
   function card(project: Project) {
     return (
@@ -81,7 +85,9 @@ export function Portfolio() {
             );
           })}
         </div>
-        <p className="mt-4 text-sm text-n-700">Draft case studies seeded from Behance. Client photography and completion videos will replace them.</p>
+        <p className="mt-4 text-sm text-n-700">
+          Selected client work across interiors, commercial fit-outs and architecture.
+        </p>
         <div id="work-grid" className="mt-8">
           {visible.length === 0 ? (
             <p className="text-n-700">No studies in this category yet.</p>
@@ -122,11 +128,20 @@ export function Portfolio() {
               {selected.location} · {selected.timeline}
             </p>
             <p className="mt-3 text-[16px] leading-[1.6]">{selected.summary}</p>
-            <div className="mt-8">
-              <Button href={`/projects/${selected.id}`} onClick={() => setSelected(null)}>
+            <div className="mt-8 flex flex-nowrap items-stretch gap-2 sm:gap-3">
+              <Button
+                href={`/projects/${selected.id}`}
+                className="min-w-0 flex-1 px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]"
+                onClick={() => setSelected(null)}
+              >
                 Open case study
               </Button>
-              <Button href="/contact" variant="secondary" className="ml-3" onClick={() => setSelected(null)}>
+              <Button
+                href="/contact"
+                variant="secondary"
+                className="min-w-0 flex-1 px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]"
+                onClick={() => setSelected(null)}
+              >
                 Start a Project
               </Button>
             </div>

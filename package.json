@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "map": "node scripts/generate-map.mjs",
-    "compress-images": "node scripts/compress-images.mjs"
+    "compress-images": "node scripts/compress-images.mjs",
+    "import-projects": "node scripts/import-client-projects.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",

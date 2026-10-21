@@ -27,19 +27,19 @@ export function ProjectDetail({
     { src: project.image, alt: project.imageAlt },
     ...project.frames,
   ];
-  if (project.video.src) {
+  const isLoop =
+    Boolean(project.video.src) &&
+    (project.video.kind === "gif" ||
+      project.video.src.endsWith(".gif") ||
+      project.video.src.includes("-completion."));
+  const isFilm = Boolean(project.video.src) && project.video.kind === "video";
+  if (isLoop) {
     galleryItems.push({
       src: project.video.src,
       alt: `${project.name} — ${project.video.label}`,
     });
   }
-  const gifIndex =
-    project.video.src &&
-    (project.video.kind === "gif" ||
-      project.video.src.endsWith(".gif") ||
-      project.video.src.includes("-completion."))
-      ? galleryItems.length - 1
-      : -1;
+  const gifIndex = isLoop ? galleryItems.length - 1 : -1;
 
   return (
     <ProjectGallery items={galleryItems} projectName={project.name}>
@@ -106,12 +106,10 @@ export function ProjectDetail({
             onLeave={onLeave}
           />
 
-          {gifIndex >= 0 || project.video.src ? (
+          {gifIndex >= 0 || isFilm ? (
             <section className="mx-auto w-full max-w-[1440px] px-6 py-14 md:px-10 md:py-20">
               <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
-                {project.video.kind === "gif" || project.video.src.includes("-completion.")
-                  ? "Completion loop"
-                  : "Completion video"}
+                {isLoop ? "Completion loop" : "Completion video"}
               </p>
               <h2 className="mt-3 font-display text-[clamp(28px,3.5vw,40px)] font-semibold tracking-[-0.03em]">
                 Walk the finished room.

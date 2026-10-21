@@ -5,3 +5,12 @@ out
 *.log
 .DS_Store
 next-env.d.ts
+
+# Client source drops (heavy 4k / PDF / video packs). Optimized stills live in public/images.
+public/*/
+!public/images/
+!public/brand/
+!public/team/
+!public/clients/
+scripts/.import-manifest.json
+public/.import-*/

@@ -20,14 +20,24 @@ export function ProofStrip() {
           <ul className="flex items-center">
             {marks.slice(0, marqueeClients.length).map((client) => (
               <li key={client.id} aria-label={client.name}>
-                <ClientLogo id={client.id} className="mx-8 h-7 w-auto text-n-500 transition-colors duration-300 hover:text-charcoal" />
+                <ClientLogo
+                  id={client.id}
+                  name={client.name}
+                  logo={client.logo}
+                  className="mx-8 text-n-500 transition-colors duration-300 hover:text-charcoal"
+                />
               </li>
             ))}
           </ul>
           <ul className="flex items-center" aria-hidden>
             {marks.slice(marqueeClients.length).map((client) => (
               <li key={`${client.id}-copy`}>
-                <ClientLogo id={client.id} className="mx-8 h-7 w-auto text-n-500" />
+                <ClientLogo
+                  id={client.id}
+                  name={client.name}
+                  logo={client.logo}
+                  className="mx-8 text-n-500"
+                />
               </li>
             ))}
           </ul>
