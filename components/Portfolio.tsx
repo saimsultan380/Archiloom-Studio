@@ -62,7 +62,7 @@ export function Portfolio() {
             </h2>
             <GreenBar />
           </div>
-          <Link href="/projects" className="text-link mb-2 font-display text-sm font-semibold">
+          <Link href="/projects/" className="text-link mb-2 font-display text-sm font-semibold">
             See all projects →
           </Link>
         </div>
@@ -130,14 +130,14 @@ export function Portfolio() {
             <p className="mt-3 text-[16px] leading-[1.6]">{selected.summary}</p>
             <div className="mt-8 flex flex-nowrap items-stretch gap-2 sm:gap-3">
               <Button
-                href={`/projects/${selected.id}`}
+                href={`/projects/${selected.id}/`}
                 className="min-w-0 flex-1 px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]"
                 onClick={() => setSelected(null)}
               >
                 Open case study
               </Button>
               <Button
-                href="/contact"
+                href="/contact/"
                 variant="secondary"
                 className="min-w-0 flex-1 px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]"
                 onClick={() => setSelected(null)}

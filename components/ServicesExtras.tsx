@@ -98,7 +98,7 @@ export function ServicesExtras() {
               Start with a quote. We come back with a clear next step, not a generic pitch.
             </p>
           </div>
-          <Button href="/contact">Request a Quote</Button>
+          <Button href="/contact/">Request a Quote</Button>
         </Container>
       </section>
     </>

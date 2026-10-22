@@ -161,17 +161,17 @@ export function ProjectDetail({
 
           <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-6 px-6 py-8 md:px-10">
             <Link
-              href="/projects"
+              href="/projects/"
               className="font-display text-sm font-semibold tracking-[0.08em] uppercase"
             >
               All work
             </Link>
-            <Button href="/contact">Start a project like this</Button>
+            <Button href="/contact/">Start a project like this</Button>
           </div>
 
           <div className="mx-auto w-full max-w-[1440px] px-6 pb-10 md:px-10">
             <Link
-              href={`/projects/${next.id}`}
+              href={`/projects/${next.id}/`}
               className="group relative block h-[58vh] min-h-[340px] overflow-hidden bg-charcoal"
             >
               <Image

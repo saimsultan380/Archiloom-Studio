@@ -77,7 +77,7 @@ export function ServicesGrid({ showHeading = true }: { showHeading?: boolean }) 
                     </div>
                   </div>
                   <Link
-                    href={`/contact?service=${service.id}`}
+                    href={`/contact/?service=${service.id}`}
                     onClick={(event) => event.stopPropagation()}
                     className="group/link mt-6 inline-flex items-center gap-1.5 self-start font-display text-sm font-semibold text-charcoal"
                   >

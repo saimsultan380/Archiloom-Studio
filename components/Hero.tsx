@@ -88,10 +88,10 @@ export function Hero() {
               </div>
               <div className="pointer-events-auto max-w-[640px] lg:col-start-1">
                 <div className="flex flex-nowrap gap-2 sm:gap-3">
-                  <Button href="/contact" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
+                  <Button href="/contact/" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
                     Start a Project
                   </Button>
-                  <Button href="/projects" variant="secondary" tone="dark" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
+                  <Button href="/projects/" variant="secondary" tone="dark" className="min-w-0 flex-1 whitespace-nowrap px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]">
                     View Projects
                   </Button>
                 </div>

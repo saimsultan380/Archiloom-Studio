@@ -103,16 +103,16 @@ export const serviceBar: Array<{
   href: string;
   icon: IconName;
 }> = [
-  { label: "Architecture Design", href: "/services#architecture-design", icon: "architecture" },
-  { label: "Interior Design", href: "/services#interior-design", icon: "interior" },
+  { label: "Architecture Design", href: "/services/#architecture-design", icon: "architecture" },
+  { label: "Interior Design", href: "/services/#interior-design", icon: "interior" },
   {
     label: "Building Permits & Drafting Services",
-    href: "/services#permit-sets",
+    href: "/services/#permit-sets",
     icon: "drafting",
   },
   {
     label: "Visualization / Animation",
-    href: "/services#modeling-rendering",
+    href: "/services/#modeling-rendering",
     icon: "visualization",
   },
 ];

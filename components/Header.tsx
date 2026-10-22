@@ -90,7 +90,7 @@ export function Header() {
           })}
         </nav>
         <div className="hidden lg:block">
-          <Button href="/contact">Get a Quote</Button>
+          <Button href="/contact/">Get a Quote</Button>
         </div>
         <button
           ref={closeRef}
@@ -122,7 +122,7 @@ export function Header() {
           <div className="flex flex-col items-start pt-8 pb-2">
             <SteppedBlocks on="dark" />
             <div className="mt-6 w-full max-w-sm">
-              <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
+              <Button href="/contact/" className="w-full" onClick={() => setOpen(false)}>
                 Get a Quote
               </Button>
             </div>

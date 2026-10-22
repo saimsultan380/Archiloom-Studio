@@ -2,17 +2,17 @@
 export const PROJECT_CLAIM = "More than 1,000 projects across 4 continents.";
 
 export const navLinks = [
-  { label: "Work", href: "/projects" },
-  { label: "Services", href: "/services" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Work", href: "/projects/" },
+  { label: "Services", href: "/services/" },
+  { label: "About Us", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
 ] as const;
 
 export const sitemapLinks = [
-  { label: "Work", href: "/projects" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Work", href: "/projects/" },
+  { label: "Services", href: "/services/" },
+  { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
 ] as const;
 
 export const socialLinks = ["Instagram", "LinkedIn", "Behance", "Dribbble"] as const;
@@ -38,8 +38,8 @@ export const about = {
 export const studio = {
   name: "Archiloom Studio",
   email: "hello@archiloom.studio",
-  website: "www.archiloom.studio",
-  websiteUrl: "https://www.archiloom.studio",
+  website: "archiloomstudio.com",
+  websiteUrl: "https://archiloomstudio.com",
   tagline: "Thoughtful design. Technical precision. Global delivery.",
   title: "Archiloom Studio — Global Architecture & Design Studio",
   description:

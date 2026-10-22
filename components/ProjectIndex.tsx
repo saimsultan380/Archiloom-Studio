@@ -48,7 +48,7 @@ export function ProjectIndex() {
         ) : (
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
             {visible.map((project) => (
-              <Link key={project.id} href={`/projects/${project.id}`} className="group min-w-0">
+              <Link key={project.id} href={`/projects/${project.id}/`} className="group min-w-0">
                 <p className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-display text-[11px] font-semibold tracking-[0.16em] text-n-700 uppercase">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-charcoal" aria-hidden />
                   {project.name}

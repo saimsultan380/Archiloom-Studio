@@ -61,7 +61,7 @@ export function Footer() {
               Designing a better <span className="title-accent">tomorrow</span>, space by space.
             </p>
           </div>
-          <Button href="/contact">Start a Project</Button>
+          <Button href="/contact/">Start a Project</Button>
         </div>
         <div className="grid gap-12 py-12 lg:grid-cols-4 lg:gap-x-16">
           <div className="text-left">
@@ -121,7 +121,7 @@ export function Footer() {
             <ul className="mt-4 grid grid-cols-1 gap-y-2">
               {services.map((service) => (
                 <li key={service.id}>
-                  <FooterLink href={`/services#${service.id}`} className="text-[14px] leading-snug">
+                  <FooterLink href={`/services/#${service.id}`} className="text-[14px] leading-snug">
                     {footerServiceName[service.id]}
                   </FooterLink>
                 </li>

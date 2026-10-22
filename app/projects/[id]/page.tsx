@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Container } from "@/components/Container";
+import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { ProjectDetail } from "@/components/ProjectDetail";
 import { projects } from "@/data/projects";
+import { pageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -12,11 +15,20 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const project = projects.find((item) => item.id === id);
-  if (!project) return { title: "Project — Archiloom Studio" };
-  return {
+  if (!project) {
+    return pageMetadata({
+      title: "Project — Archiloom Studio",
+      description: "Project case study from Archiloom Studio.",
+      path: `/projects/${id}/`,
+      index: false,
+    });
+  }
+  return pageMetadata({
     title: `${project.name} — Archiloom Studio`,
     description: project.summary,
-  };
+    path: `/projects/${project.id}/`,
+    ogType: "article",
+  });
 }
 
 export default async function ProjectPage({ params }: PageProps) {
@@ -28,6 +40,14 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <main id="main" className="bg-white pt-[72px] text-charcoal">
+      <Container className="pt-6 pb-2">
+        <PageBreadcrumbs
+          items={[
+            { name: "Projects", path: "/projects/" },
+            { name: project.name, path: `/projects/${project.id}/` },
+          ]}
+        />
+      </Container>
       <ProjectDetail project={project} next={next} />
     </main>
   );
