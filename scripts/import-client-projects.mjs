@@ -49,6 +49,11 @@ const jobs = [
     videos: ["OPENING DAY.mp4"],
   },
   { slug: "naache", dir: "NAACHE COMMONS  SITE  - CANADA - (ft-mm)" },
+  {
+    slug: "richards-residence",
+    dir: "RICHARDS RESIDENCE -OKLAND,CA - USA/RICHARDS RESIDENCE -OKLAND,CA - USA",
+    gifs: true,
+  },
 ];
 
 function listFiles(dir) {

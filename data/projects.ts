@@ -431,6 +431,27 @@ export const projects: Project[] = [
     frameTo: 8,
   }),
   project({
+    id: "richards-residence",
+    name: "Richards Residence",
+    category: "Architecture",
+    location: "Oakland, CA, USA",
+    timeline: "2024 — 2025",
+    summary:
+      "A residential architecture study in Oakland — calm massing, clear indoor–outdoor rooms and a finished elevation that sits quietly in its street context.",
+    brief:
+      "The design focuses on proportion, daylight and material restraint so the house reads as a composed whole from approach through the main living rooms.",
+    prefix: "richards-residence",
+    cover: 1,
+    frameFrom: 2,
+    frameTo: 8,
+    video: {
+      src: "/images/richards-residence-completion.webp",
+      poster: "/images/richards-residence-01.webp",
+      label: "Completion loop",
+      kind: "gif",
+    },
+  }),
+  project({
     id: "flavoursrest",
     name: "Flavoursrest Building",
     category: "Architecture",
