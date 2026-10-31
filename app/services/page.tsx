@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { PageHero } from "@/components/PageHero";
 import { ServicesExtras } from "@/components/ServicesExtras";
@@ -16,9 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ServicesPage() {
   return (
     <main id="main" className="pt-[72px]">
-      <Container className="pt-6">
-        <PageBreadcrumbs items={[{ name: "Services", path: "/services/" }]} />
-      </Container>
+      <PageBreadcrumbs items={[{ name: "Services", path: "/services/" }]} />
       <PageHero
         label="Services"
         title={

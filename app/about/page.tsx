@@ -17,9 +17,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <main id="main" className="pt-[72px]">
-      <Container className="pt-6">
-        <PageBreadcrumbs items={[{ name: "About", path: "/about/" }]} />
-      </Container>
+      <PageBreadcrumbs items={[{ name: "About", path: "/about/" }]} />
       <PageHero
         label="About"
         title={

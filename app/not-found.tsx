@@ -20,7 +20,7 @@ export default function NotFound() {
     <main id="main" className="bg-white pt-[72px] text-charcoal">
       <Container className="py-16 md:py-24">
         <PageBreadcrumbs items={[{ name: "Page not found" }]} />
-        <p className="mt-10 font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
+        <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase">
           Error 404
         </p>
         <h1 className="mt-4 max-w-3xl font-display text-[clamp(40px,7vw,72px)] leading-[0.95] font-semibold tracking-[-0.04em]">

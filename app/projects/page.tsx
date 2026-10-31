@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { ProjectIndex } from "@/components/ProjectIndex";
 import { pageMetadata } from "@/lib/seo";
@@ -14,9 +13,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ProjectsPage() {
   return (
     <main id="main" className="pt-[72px]">
-      <Container className="pt-6">
-        <PageBreadcrumbs items={[{ name: "Projects", path: "/projects/" }]} />
-      </Container>
+      <PageBreadcrumbs items={[{ name: "Projects", path: "/projects/" }]} />
       <ProjectIndex />
     </main>
   );

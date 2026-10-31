@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Contact } from "@/components/Contact";
-import { Container } from "@/components/Container";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { PageHero } from "@/components/PageHero";
 import { pageMetadata } from "@/lib/seo";
@@ -16,9 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <main id="main" className="pt-[72px]">
-      <Container className="pt-6">
-        <PageBreadcrumbs items={[{ name: "Contact", path: "/contact/" }]} />
-      </Container>
+      <PageBreadcrumbs items={[{ name: "Contact", path: "/contact/" }]} />
       <PageHero
         label="Contact"
         title={

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/Container";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { ProjectDetail } from "@/components/ProjectDetail";
 import { projects } from "@/data/projects";
@@ -40,14 +39,12 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <main id="main" className="bg-white pt-[72px] text-charcoal">
-      <Container className="pt-6 pb-2">
-        <PageBreadcrumbs
-          items={[
-            { name: "Projects", path: "/projects/" },
-            { name: project.name, path: `/projects/${project.id}/` },
-          ]}
-        />
-      </Container>
+      <PageBreadcrumbs
+        items={[
+          { name: "Projects", path: "/projects/" },
+          { name: project.name, path: `/projects/${project.id}/` },
+        ]}
+      />
       <ProjectDetail project={project} next={next} />
     </main>
   );
