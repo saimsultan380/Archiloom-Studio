@@ -5,7 +5,6 @@ export const serviceIds = [
   "revit-drafting",
   "permit-sets",
   "modeling-rendering",
-  "architectural-animation",
   "interior-design",
 ] as const;
 
@@ -63,30 +62,18 @@ export const services: Service[] = [
   {
     id: "modeling-rendering",
     number: "04",
-    title: "3D Modeling and Rendering Services",
+    title: "3D Modeling, Rendering and Animation Services",
     summary:
-      "Accurate models and daylight-true renders that explain proportion, material and atmosphere before anything is built.",
-    tags: ["3D modeling", "Photoreal renders", "Material studies"],
-    deliverables: ["Coordinated model", "Still renders", "Material and light studies"],
+      "Accurate models, daylight-true renders and walkthroughs that explain proportion, material and atmosphere before anything is built.",
+    tags: ["3D modeling", "Photoreal renders", "Walkthroughs"],
+    deliverables: ["Coordinated model", "Still renders", "Edited walkthrough"],
     icon: "visualization",
     image: "/images/hero-model.jpg",
     imageAlt: "Photoreal render of a courtyard pavilion at dusk",
   },
   {
-    id: "architectural-animation",
-    number: "05",
-    title: "3D Architectural Animation Services",
-    summary:
-      "Walkthroughs and flythroughs that move a client through the space with the same restraint as the drawings.",
-    tags: ["Walkthroughs", "Flythroughs", "Animated visuals"],
-    deliverables: ["Camera path", "Edited walkthrough", "Short flythrough cut"],
-    icon: "animation",
-    image: "/images/glassline-street.jpg",
-    imageAlt: "Dusk camera path looking up a slender glass tower",
-  },
-  {
     id: "interior-design",
-    number: "06",
+    number: "05",
     title: "Interior Design Services",
     summary:
       "Space planning, concept, materials and detailing that make the architecture livable and specific.",

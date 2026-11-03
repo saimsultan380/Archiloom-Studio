@@ -67,7 +67,7 @@ export function Pricing() {
                   variant={pkg.featured ? "primary" : "secondary"}
                   className="w-full"
                 >
-                  Start a Project
+                  Let&apos;s Collaborate
                 </Button>
                 <button type="button" onClick={() => setActive(pkg)} className="text-link mt-4 font-display text-sm font-semibold">
                   How it works
@@ -100,7 +100,7 @@ export function Pricing() {
             </ol>
             <div className="mt-8">
               <Button href={`/contact/?plan=${active.id}`} onClick={() => setActive(null)}>
-                Start a Project
+                Let&apos;s Collaborate
               </Button>
             </div>
           </>

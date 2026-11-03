@@ -133,15 +133,13 @@ html.menu-open .smart-fab {
 }
 
 .marquee-track {
-  animation: arch-marquee 46s linear infinite;
+  animation: arch-marquee 80s linear infinite;
 }
 
 .ticker-track {
   animation: arch-marquee 58s linear infinite;
 }
 
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track,
 .ticker:hover .ticker-track,
 .ticker:focus-within .ticker-track {
   animation-play-state: paused;
@@ -296,6 +294,10 @@ html.menu-open .smart-fab {
 
 .hero-map {
   opacity: 0.45;
+}
+
+.hero-map .pin {
+  pointer-events: auto;
 }
 
 .view-pill {

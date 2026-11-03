@@ -1,9 +1,9 @@
 export const projectFilters = [
   "All",
   "Architecture",
-  "Interior",
-  "Visualization",
-  "Commercial",
+  "Interior Design",
+  "3D Visualization",
+  "CAD/Revit & Documentation",
 ] as const;
 
 export type ProjectCategory = (typeof projectFilters)[number];
@@ -28,6 +28,9 @@ export type Project = {
   category: Exclude<ProjectCategory, "All">;
   location: string;
   timeline: string;
+  projectType: string;
+  client: string;
+  scope: string;
   summary: string;
   brief: string;
   image: string;
@@ -37,6 +40,28 @@ export type Project = {
   sourceNote: string;
   placeholder: boolean;
 };
+
+function inferProjectType(name: string, summary: string) {
+  const blob = `${name} ${summary}`.toLowerCase();
+  if (/residence|house|villa/.test(blob)) return "Residential";
+  if (/office|workplace/.test(blob)) return "Workplace";
+  if (/salon|haircut/.test(blob)) return "Beauty";
+  if (/kart/.test(blob)) return "Entertainment";
+  if (/driving/.test(blob)) return "Education";
+  if (/retail|store|shop|station|outdoors/.test(blob)) return "Retail";
+  if (/cafe|restaurant|bar|pizza|burger|dessert|juice|taco|cinnabon|leaves/.test(blob)) {
+    return "Hospitality, Food & Beverage";
+  }
+  if (/building|commons|exterior|massing/.test(blob)) return "Commercial architecture";
+  return "Interior";
+}
+
+function inferScope(category: Exclude<ProjectCategory, "All">) {
+  if (category === "Architecture") return "Architectural design and visualization";
+  if (category === "3D Visualization") return "3D modeling, rendering and animation";
+  if (category === "CAD/Revit & Documentation") return "CAD, Revit and technical documentation";
+  return "Interior design, space planning and visualization";
+}
 
 function numberedFrames(prefix: string, from: number, to: number, label: string): ProjectFrame[] {
   const frames: ProjectFrame[] = [];
@@ -56,6 +81,9 @@ function project(input: {
   category: Exclude<ProjectCategory, "All">;
   location: string;
   timeline?: string;
+  projectType?: string;
+  client?: string;
+  scope?: string;
   summary: string;
   brief: string;
   prefix: string;
@@ -67,12 +95,18 @@ function project(input: {
 }): Project {
   const cover = String(input.cover).padStart(2, "0");
   const image = `/images/${input.prefix}-${cover}.webp`;
+  const projectType = input.projectType ?? inferProjectType(input.name, input.summary);
+  const client = input.client ?? input.name;
+  const scope = input.scope ?? inferScope(input.category);
   return {
     id: input.id,
     name: input.name,
     category: input.category,
     location: input.location,
     timeline: input.timeline ?? "2023 — 2025",
+    projectType,
+    client,
+    scope,
     summary: input.summary,
     brief: input.brief,
     image,
@@ -97,7 +131,7 @@ export const projects: Project[] = [
   project({
     id: "masala-pizza-schaumburg",
     name: "Masala Pizza",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Schaumburg, IL, USA",
     timeline: "2024 — 2025",
     summary:
@@ -118,7 +152,7 @@ export const projects: Project[] = [
   project({
     id: "masala-pizza-chicago",
     name: "Masala Pizza Chicago",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Chicago, USA",
     timeline: "2024 — 2025",
     summary:
@@ -133,7 +167,7 @@ export const projects: Project[] = [
   project({
     id: "finish-line-haircuts",
     name: "Finish Line Haircuts",
-    category: "Interior",
+    category: "Interior Design",
     location: "USA",
     timeline: "2023 — 2024",
     summary:
@@ -154,7 +188,7 @@ export const projects: Project[] = [
   project({
     id: "cinnabon",
     name: "Cinnabon",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Lahore, Pakistan",
     timeline: "2024 — 2025",
     summary:
@@ -169,7 +203,7 @@ export const projects: Project[] = [
   project({
     id: "seven-leaves-cafe",
     name: "7 Leaves Cafe",
-    category: "Commercial",
+    category: "Interior Design",
     location: "San Francisco, CA, USA",
     timeline: "2021 — 2022",
     summary:
@@ -184,7 +218,7 @@ export const projects: Project[] = [
   project({
     id: "nouveau-bar",
     name: "Nouveau Restaurant & Bar",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Texas, USA",
     timeline: "2023 — 2024",
     summary:
@@ -205,7 +239,7 @@ export const projects: Project[] = [
   project({
     id: "pressed-juicery",
     name: "Pressed Juicery",
-    category: "Commercial",
+    category: "Interior Design",
     location: "USA",
     timeline: "2023 — 2024",
     summary:
@@ -220,7 +254,7 @@ export const projects: Project[] = [
   project({
     id: "tacotarian",
     name: "Tacotarian",
-    category: "Commercial",
+    category: "Interior Design",
     location: "USA",
     timeline: "2024 — 2025",
     summary:
@@ -235,7 +269,7 @@ export const projects: Project[] = [
   project({
     id: "take-burger",
     name: "Take Burger",
-    category: "Commercial",
+    category: "Interior Design",
     location: "USA",
     timeline: "2024 — 2025",
     summary:
@@ -256,7 +290,7 @@ export const projects: Project[] = [
   project({
     id: "odoe-desserts",
     name: "Odoe Desserts",
-    category: "Commercial",
+    category: "Interior Design",
     location: "USA",
     timeline: "2024 — 2025",
     summary:
@@ -271,7 +305,7 @@ export const projects: Project[] = [
   project({
     id: "barrett-jackson",
     name: "Barrett-Jackson",
-    category: "Commercial",
+    category: "Interior Design",
     location: "USA",
     timeline: "2022 — 2023",
     summary:
@@ -286,7 +320,7 @@ export const projects: Project[] = [
   project({
     id: "tonino-lamborghini",
     name: "Tonino Lamborghini",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Tokyo, Japan",
     timeline: "2023 — 2024",
     summary:
@@ -301,7 +335,7 @@ export const projects: Project[] = [
   project({
     id: "chaos-karts",
     name: "Chaos Karts",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Dubai, UAE",
     timeline: "2023 — 2024",
     summary:
@@ -316,7 +350,7 @@ export const projects: Project[] = [
   project({
     id: "e-outdoors",
     name: "E-Outdoors",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Canada",
     timeline: "2023 — 2024",
     summary:
@@ -337,7 +371,7 @@ export const projects: Project[] = [
   project({
     id: "tech-station",
     name: "Tech Station",
-    category: "Commercial",
+    category: "Interior Design",
     location: "Riyadh, KSA",
     timeline: "2023 — 2024",
     summary:
@@ -358,7 +392,7 @@ export const projects: Project[] = [
   project({
     id: "cutbox",
     name: "Cutbox",
-    category: "Interior",
+    category: "Interior Design",
     location: "London, UK",
     timeline: "2023 — 2024",
     summary:
@@ -373,7 +407,7 @@ export const projects: Project[] = [
   project({
     id: "ramsar-salon",
     name: "Ramsar Salon",
-    category: "Interior",
+    category: "Interior Design",
     location: "Hong Kong",
     timeline: "2023 — 2024",
     summary:
@@ -388,7 +422,7 @@ export const projects: Project[] = [
   project({
     id: "logipoint",
     name: "Logipoint Office",
-    category: "Interior",
+    category: "Interior Design",
     location: "KSA",
     timeline: "2023 — 2024",
     summary:
@@ -403,7 +437,7 @@ export const projects: Project[] = [
   project({
     id: "bin-yaber",
     name: "Bin Yaber Driving",
-    category: "Interior",
+    category: "Interior Design",
     location: "UAE",
     timeline: "2024 — 2025",
     summary:
@@ -418,7 +452,7 @@ export const projects: Project[] = [
   project({
     id: "bin-yaber-02",
     name: "Bin Yaber Driving 02",
-    category: "Interior",
+    category: "Interior Design",
     location: "UAE",
     timeline: "2024 — 2025",
     summary:

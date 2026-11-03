@@ -1,17 +1,15 @@
-/** PLACEHOLDER — names and portraits until the client supplies photography. */
-
 export type TeamMember = {
   id: string;
   name: string;
-  role: string;
+  designation?: string;
+  education?: string;
+  experience?: string;
   image: string;
-  variant: 0 | 1 | 2 | 3;
-  placeholder: true;
 };
 
+/** Names and portraits on file. Designation, education and experience stay empty until the studio sends them. */
 export const team: TeamMember[] = [
-  { id: "m1", name: "Avery Cole", role: "Design Director", image: "/team/team-avery.jpg", variant: 0, placeholder: true },
-  { id: "m2", name: "Noor Rahman", role: "Project Architect", image: "/team/team-noor.jpg", variant: 1, placeholder: true },
-  { id: "m3", name: "Elena Voss", role: "Interior Lead", image: "/team/team-elena.jpg", variant: 2, placeholder: true },
-  { id: "m4", name: "Jonas Park", role: "Visualization Lead", image: "/team/team-jonas.jpg", variant: 3, placeholder: true },
+  { id: "zahid", name: "Zahid Naveed", image: "/team/zahid%20naveed.png" },
+  { id: "umair", name: "Umair Akram", image: "/team/umair%20akram.png" },
+  { id: "hamza", name: "Hamza", image: "/team/hamza.png" },
 ];

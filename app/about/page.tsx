@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "About us — Archiloom Studio",
-  description: about.story,
+  description: about.paragraphs.join(" "),
   path: "/about/",
 });
 
@@ -25,12 +25,19 @@ export default function AboutPage() {
             About <span className="title-accent">us</span>
           </>
         }
-        description={about.story}
+        description={about.paragraphs[0]}
         image="/images/interior-living.jpg"
         imageAlt="Calm living room with oak, plaster and a long garden window"
       />
       <section className="bg-white py-16 text-charcoal md:py-24">
-        <Container className="grid gap-12 md:grid-cols-2 md:gap-16">
+        <Container>
+          <div className="max-w-3xl space-y-5 text-[17px] leading-[1.7] text-n-700">
+            {about.paragraphs.slice(1).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </Container>
+        <Container className="mt-16 grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
             <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-700 uppercase">
               Mission
@@ -63,7 +70,7 @@ export default function AboutPage() {
               Tell us about the <span className="title-accent">site</span>.
             </h2>
           </div>
-          <Button href="/contact/">Get a Quote</Button>
+          <Button href="/contact/">Let&apos;s Collaborate</Button>
         </Container>
       </section>
     </main>

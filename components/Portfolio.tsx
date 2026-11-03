@@ -86,7 +86,7 @@ export function Portfolio() {
           })}
         </div>
         <p className="mt-4 text-sm text-n-700">
-          Selected client work across interiors, commercial fit-outs and architecture.
+          Architecture, interior design, visualization and documentation.
         </p>
         <div id="work-grid" className="mt-8">
           {visible.length === 0 ? (
@@ -142,7 +142,7 @@ export function Portfolio() {
                 className="min-w-0 flex-1 px-3 text-[12px] sm:flex-none sm:px-5 sm:text-[13px]"
                 onClick={() => setSelected(null)}
               >
-                Start a Project
+                Let&apos;s Collaborate
               </Button>
             </div>
           </>

@@ -35,7 +35,7 @@ export function WorldMap({ decorative = false }: { decorative?: boolean }) {
       aria-labelledby={decorative ? undefined : "world-map-title"}
     >
       {decorative ? null : (
-        <title id="world-map-title">Dotted world map marking North America, the United Kingdom, the Middle East and Australia</title>
+        <title id="world-map-title">Dotted world map marking USA and Canada, UK and Europe, the Middle East, and Australia</title>
       )}
       <g aria-hidden>
         {mapDots.map((dot, index) => (
@@ -53,7 +53,7 @@ export function WorldMap({ decorative = false }: { decorative?: boolean }) {
       </g>
       {locations.map((location) => {
         const point = points[location.id];
-        const label = `${location.name} — ${location.note}`;
+        const label = location.note ? `${location.name} — ${location.note}` : location.name;
         const width = Math.max(220, label.length * 7.6);
         const tipX = Math.min(780, Math.max(16, point.x - width / 2));
         const tipY = point.y > 80 ? point.y - 48 : point.y + 18;
@@ -70,6 +70,18 @@ export function WorldMap({ decorative = false }: { decorative?: boolean }) {
             <circle className="pin-pulse" cx={point.x} cy={point.y} r="6" fill="#7ED957" />
             <circle className="pin-core" cx={point.x} cy={point.y} r="3.4" fill="#7ED957" />
             <circle cx={point.x} cy={point.y} r="16" fill="transparent" />
+            <text
+              x={point.x}
+              y={location.id === "me" ? point.y + 24 : point.y - 14}
+              textAnchor="middle"
+              fill="#FFC857"
+              fontSize="13"
+              fontWeight="600"
+              fontFamily="Poppins, sans-serif"
+              letterSpacing="0.06em"
+            >
+              {location.name}
+            </text>
             <g className="tip">
               <rect x={tipX} y={tipY} width={width} height="32" rx="2" fill="#1D1D1D" stroke="rgba(255,255,255,0.18)" />
               <text x={tipX + 12} y={tipY + 21} fill="#ffffff" fontSize="13" fontFamily="Poppins, sans-serif">

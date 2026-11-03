@@ -5,10 +5,11 @@ type ClientLogoProps = {
   id: string;
   name: string;
   logo?: string;
+  mono?: boolean;
   className?: string;
 };
 
-export function ClientLogo({ name, logo, className }: ClientLogoProps) {
+export function ClientLogo({ name, logo, mono = false, className }: ClientLogoProps) {
   if (logo) {
     return (
       <Image
@@ -17,7 +18,10 @@ export function ClientLogo({ name, logo, className }: ClientLogoProps) {
         width={200}
         height={64}
         className={cn(
-          "h-9 w-auto max-w-[150px] object-contain opacity-85 transition-opacity duration-300 group-hover:opacity-100 sm:h-10 sm:max-w-[168px]",
+          "h-9 w-auto max-w-[150px] object-contain transition-[filter,opacity] duration-300 sm:h-10 sm:max-w-[168px]",
+          mono
+            ? "grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-focus-within:grayscale-0 group-focus-within:opacity-100"
+            : "opacity-85 group-hover:opacity-100",
           className,
         )}
       />

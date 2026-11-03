@@ -46,7 +46,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 max-h-[min(720px,calc(100vh-2rem))] w-full max-w-2xl overflow-y-auto rounded-[8px] border border-n-300 bg-white p-6 text-charcoal shadow-[0_24px_60px_rgba(0,0,0,0.18)] md:p-8"
+        className="relative z-10 max-h-[min(840px,calc(100vh-2rem))] w-full max-w-3xl overflow-y-auto rounded-[8px] border border-n-300 bg-white p-6 text-charcoal shadow-[0_24px_60px_rgba(0,0,0,0.18)] md:p-8"
       >
         <div className="flex items-start justify-between gap-6">
           <h3 id={titleId} className="font-display text-2xl font-semibold tracking-[-0.03em]">

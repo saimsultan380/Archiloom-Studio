@@ -19,24 +19,26 @@ export function ProofStrip() {
         <div className="marquee-track flex w-max items-center py-6">
           <ul className="flex items-center">
             {marks.slice(0, marqueeClients.length).map((client) => (
-              <li key={client.id} aria-label={client.name}>
+              <li key={client.id} aria-label={client.name} className="group">
                 <ClientLogo
                   id={client.id}
                   name={client.name}
                   logo={client.logo}
-                  className="mx-8 text-n-500 transition-colors duration-300 hover:text-charcoal"
+                  mono
+                  className="mx-16 md:mx-24"
                 />
               </li>
             ))}
           </ul>
           <ul className="flex items-center" aria-hidden>
             {marks.slice(marqueeClients.length).map((client) => (
-              <li key={`${client.id}-copy`}>
+              <li key={`${client.id}-copy`} className="group">
                 <ClientLogo
                   id={client.id}
                   name={client.name}
                   logo={client.logo}
-                  className="mx-8 text-n-500"
+                  mono
+                  className="mx-16 md:mx-24"
                 />
               </li>
             ))}

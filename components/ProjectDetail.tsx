@@ -18,9 +18,11 @@ export function ProjectDetail({
   next: Project;
 }) {
   const facts = [
+    { label: "Project", value: project.projectType },
+    { label: "Client", value: project.client },
     { label: "Location", value: project.location },
     { label: "Timeline", value: project.timeline },
-    { label: "Discipline", value: project.category },
+    { label: "Scope", value: project.scope },
   ];
 
   const galleryItems: ProjectFrame[] = [

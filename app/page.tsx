@@ -9,7 +9,6 @@ import { Portfolio } from "@/components/Portfolio";
 import { Pricing } from "@/components/Pricing";
 import { Process } from "@/components/Process";
 import { ProofStrip } from "@/components/ProofStrip";
-import { ReviewsTicker } from "@/components/ReviewsTicker";
 import { ServiceBar } from "@/components/ServiceBar";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { Team } from "@/components/Team";
@@ -32,7 +31,6 @@ export default function HomePage() {
       <ServicesGrid />
       <Pricing />
       <Portfolio />
-      <ReviewsTicker />
       <Team />
       <ClientsGrid />
       <About />

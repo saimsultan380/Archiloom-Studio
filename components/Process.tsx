@@ -1,14 +1,6 @@
-import { processSteps } from "@/data/site";
+import { processJourney } from "@/data/site";
 import { Container } from "@/components/Container";
 import { GreenBar, SectionLabel } from "@/components/SectionLabel";
-
-const notes: Record<(typeof processSteps)[number], string> = {
-  Discovery: "The site, the brief and the limits, written down before a line is drawn.",
-  Concept: "A spatial idea you can judge: massing, a plan and the first elevations.",
-  Development: "The idea made precise. Materials, plans and the decisions that hold.",
-  Documentation: "Drawings coordinated for review, permit and the people on site.",
-  Delivery: "Issued sets, and a studio that stays to answer what the drawings raise.",
-};
 
 export function Process() {
   return (
@@ -23,20 +15,25 @@ export function Process() {
             <GreenBar />
           </div>
           <p className="max-w-md font-display text-[clamp(22px,2.4vw,28px)] leading-[1.25] font-medium tracking-[-0.03em] text-charcoal lg:col-span-5">
-            Designing a better <span className="title-accent">tomorrow</span>, space by space.
+            Your Vision. <span className="title-accent">Our Commitment.</span>
           </p>
         </div>
-        <ol className="mt-12 grid border-t border-n-300 sm:grid-cols-2 lg:mt-16 lg:grid-cols-5">
-          {processSteps.map((step, index) => (
+        <p className="mt-8 max-w-3xl text-[16px] leading-[1.7] text-n-700">
+          Wherever you are in the journey — from a vague idea to a construction-ready project — we help you take the next step.
+        </p>
+        <ol className="mt-12 grid gap-px bg-n-300 sm:grid-cols-2">
+          {processJourney.map((step) => (
             <li
-              key={step}
-              className="group border-b border-n-300 py-8 transition-colors duration-300 hover:bg-n-100/70 sm:[&:nth-child(odd)]:pr-8 sm:[&:nth-child(even)]:pl-8 lg:border-b-0 lg:border-r lg:px-6 lg:py-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+              key={step.id}
+              className={`group bg-white p-6 transition-colors duration-300 hover:bg-n-100/70 md:p-8 ${"wide" in step && step.wide ? "sm:col-span-2" : ""}`}
             >
-              <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 transition-colors duration-300 group-hover:text-signal">
-                {String(index + 1).padStart(2, "0")}
+              <p className="font-display text-[12px] font-semibold tracking-[0.16em] text-n-500 uppercase transition-colors duration-300 group-hover:text-signal">
+                {step.id} — {step.label}
               </p>
-              <h3 className="mt-6 font-display text-[22px] font-semibold tracking-[-0.02em]">{step}</h3>
-              <p className="mt-3 text-[15px] leading-[1.6] text-n-700">{notes[step]}</p>
+              <h3 className="mt-4 font-display text-[clamp(22px,2.4vw,30px)] leading-[1.2] font-semibold tracking-[-0.03em] text-charcoal">
+                {step.lead} {step.accent}
+              </h3>
+              <p className="mt-3 max-w-xl text-[15px] leading-[1.6] text-n-700">{step.body}</p>
             </li>
           ))}
         </ol>

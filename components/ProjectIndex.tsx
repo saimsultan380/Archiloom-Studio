@@ -18,7 +18,7 @@ export function ProjectIndex() {
             WORK
           </h1>
           <p className="max-w-sm pb-2 text-[15px] leading-snug text-n-700">
-            Case studies with location, timeline, brief, full image sets and completion video. More projects arrive as the client sends each one.
+            Case studies with project type, client, location, timeline and scope. More detail arrives as each pack is sent.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2" role="toolbar" aria-label="Filter projects">

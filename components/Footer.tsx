@@ -15,8 +15,7 @@ const footerServiceName: Record<ServiceId, string> = {
   "architecture-design": "Architecture Design",
   "revit-drafting": "Revit Drafting",
   "permit-sets": "Permit Sets",
-  "modeling-rendering": "3D Modeling",
-  "architectural-animation": "Animation",
+  "modeling-rendering": "3D Modeling & Animation",
   "interior-design": "Interior Design",
 };
 
@@ -58,10 +57,10 @@ export function Footer() {
               Archiloom Studio
             </p>
             <p className="mt-5 font-display text-[clamp(36px,5vw,64px)] font-bold leading-[0.95] tracking-[-0.04em]">
-              Designing a better <span className="title-accent">tomorrow</span>, space by space.
+              Your Vision. <span className="title-accent">Our Commitment.</span>
             </p>
           </div>
-          <Button href="/contact/">Start a Project</Button>
+          <Button href="/contact/">Let&apos;s Collaborate</Button>
         </div>
         <div className="grid gap-12 py-12 lg:grid-cols-4 lg:gap-x-16">
           <div className="text-left">

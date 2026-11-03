@@ -10,25 +10,31 @@ export function About() {
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden />
       <MapBackdrop place="right" />
       <Container className="relative">
-        <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-20">
-          <SectionHeading label="About" title={<>About <span className="title-accent">us</span></>} tone="dark" />
-          <p className="max-w-xl text-[17px] leading-[1.7] text-white/75">{about.story}</p>
-        </div>
-        <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image
-              src="/images/interior-living.jpg"
-              alt="Calm living room with oak, plaster and a long garden window"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 40vw, 100vw"
-            />
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <SectionHeading label="About" title={<>About <span className="title-accent">us</span></>} tone="dark" />
+            <div className="relative mt-8 aspect-[16/10] overflow-hidden">
+              <Image
+                src="/images/interior-living.jpg"
+                alt="Calm living room with oak, plaster and a long garden window"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+            </div>
           </div>
           <div>
-            <h3 className="font-display text-[22px] font-semibold tracking-[-0.02em]">Mission</h3>
-            <p className="mt-3 text-[17px] leading-[1.7] text-white/75">{about.mission}</p>
-            <h3 className="mt-10 font-display text-[22px] font-semibold tracking-[-0.02em]">Vision</h3>
-            <p className="mt-3 text-[17px] leading-[1.7] text-white/75">{about.vision}</p>
+            <div className="max-w-xl space-y-5 text-[17px] leading-[1.7] text-white/75">
+              {about.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-10 max-w-xl">
+              <h3 className="font-display text-[22px] font-semibold tracking-[-0.02em]">Mission</h3>
+              <p className="mt-3 text-[17px] leading-[1.7] text-white/75">{about.mission}</p>
+              <h3 className="mt-8 font-display text-[22px] font-semibold tracking-[-0.02em]">Vision</h3>
+              <p className="mt-3 text-[17px] leading-[1.7] text-white/75">{about.vision}</p>
+            </div>
           </div>
         </div>
       </Container>

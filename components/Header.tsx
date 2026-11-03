@@ -90,7 +90,7 @@ export function Header() {
           })}
         </nav>
         <div className="hidden lg:block">
-          <Button href="/contact/">Get a Quote</Button>
+          <Button href="/contact/">Let&apos;s Collaborate</Button>
         </div>
         <button
           ref={closeRef}
@@ -123,7 +123,7 @@ export function Header() {
             <SteppedBlocks on="dark" />
             <div className="mt-6 w-full max-w-sm">
               <Button href="/contact/" className="w-full" onClick={() => setOpen(false)}>
-                Get a Quote
+                Let&apos;s Collaborate
               </Button>
             </div>
           </div>
