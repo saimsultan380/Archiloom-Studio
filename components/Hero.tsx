@@ -59,12 +59,12 @@ export function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         <div className="flex flex-1 items-center pt-[88px]">
           <Container className="pointer-events-none py-10 lg:py-8">
-            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(260px,0.88fr)] lg:gap-x-16">
-              <div className="pointer-events-auto relative z-30 max-w-[640px] lg:col-start-1">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-x-12">
+              <div className="pointer-events-auto relative z-30 lg:col-start-1">
                 <p className="font-display text-[13px] font-semibold tracking-[0.18em] text-white/90 sm:text-[15px]">
                   GLOBAL ARCHITECTURE & DESIGN STUDIO
                 </p>
-                <h1 className="mt-6 font-display text-[clamp(36px,4.6vw,60px)] font-bold leading-[1.08] tracking-[-0.035em]">
+                <h1 className="mt-6 font-display text-[clamp(34px,4.1vw,52px)] font-bold leading-[1.08] tracking-[-0.035em]">
                   Your Vision.
                   <span className="mt-1 block title-accent">Our Design Expertise.</span>
                   <span className="mt-1 block">Reliable Project Delivery.</span>
@@ -83,7 +83,7 @@ export function Hero() {
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
               </div>
-              <div className="pointer-events-auto relative z-30 max-w-[640px] lg:col-start-1">
+              <div className="pointer-events-auto relative z-30 lg:col-start-1">
                 <div className="flex flex-nowrap gap-2 sm:gap-3">
                   <Button href="#contact" className="min-w-0 flex-1 px-3 text-center text-[12px] leading-tight sm:flex-none sm:px-5 sm:text-[13px]">
                     Tell Us About Your Project

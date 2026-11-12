@@ -47,12 +47,15 @@ export function Pricing() {
                 </p>
               ) : null}
               <h3 className="font-display text-xl font-semibold">{pkg.name}</h3>
+              <p className="mt-1 text-sm text-n-700">
+                {pkg.id === "basic" ? "Design Support Plan" : pkg.id === "standard" ? "Full-Service Design Plan" : "Flexible Hourly Support"}
+              </p>
               <p className="mt-6 flex items-end gap-1">
                 <span className="font-display text-[40px] leading-none font-bold tracking-[-0.03em]">{pkg.price}</span>
                 <span className="mb-1 text-sm text-n-700">{pkg.cadence}</span>
               </p>
               <p className="mt-4 text-[15px] text-charcoal">{pkg.hours}</p>
-              <p className="mt-1 text-sm text-n-700">Effective rate {pkg.rate}</p>
+              <p className="mt-1 text-sm text-n-700">{pkg.rate}</p>
               <ul className="mt-6 space-y-3 border-t border-n-300 pt-6">
                 {pkg.features.map((feature) => (
                   <li key={feature} className="flex gap-3 text-[15px] leading-snug text-n-700">
@@ -77,11 +80,13 @@ export function Pricing() {
           ))}
         </div>
         <p className="mt-10 text-center text-[15px] text-n-700 md:text-left">
-          Feature lists are draft placeholders, to be confirmed.{" "}
+          <span className="block font-display text-[18px] font-semibold tracking-[-0.02em] text-charcoal">
+            Your Vision. Our Team. One Seamless Workflow.
+          </span>
           <span className="mt-2 block text-charcoal md:mt-3 md:text-[17px]">
-            Need something different?{" "}
+            Have a Unique Project in Mind?{" "}
             <Link href="/contact/?plan=custom" className="text-link font-display font-semibold">
-              Discuss Your Scope →
+              Let&apos;s build a dedicated support plan →
             </Link>
           </span>
         </p>
@@ -89,7 +94,7 @@ export function Pricing() {
       <Modal open={Boolean(active)} title={active ? `How ${active.name} works` : "How it works"} onClose={() => setActive(null)}>
         {active ? (
           <>
-            <p className="text-sm text-n-700">Process notes are placeholders, to be defined by the client.</p>
+            <p className="text-sm text-n-700">How this engagement runs once we start.</p>
             <ol className="mt-5 space-y-4">
               {active.howItWorks.map((step, index) => (
                 <li key={step} className="flex gap-4">

@@ -20,25 +20,34 @@ export function Team() {
           </div>
           <p className="max-w-[12rem] pb-1 text-right text-sm text-n-700 sm:max-w-none">Meet the creative minds.</p>
         </div>
-        <p className="mt-4 max-w-2xl text-sm text-n-700">
-          Designation, education and experience will be added as each person&apos;s details are confirmed.
-        </p>
-        <div className="mt-12 grid grid-cols-2 items-end gap-x-4 gap-y-10 sm:grid-cols-3 lg:gap-x-8">
+        <div className="mt-12 grid grid-cols-2 items-end gap-x-4 gap-y-12 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
           {team.map((member, index) => (
             <Reveal key={member.id} delay={index * 0.06}>
-              <article className="group" tabIndex={0} aria-label={member.name}>
-                <div className="relative aspect-[3/5] w-full">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-contain object-bottom grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0 group-focus-within:grayscale-0"
-                    sizes="(min-width: 1024px) 28vw, 46vw"
-                  />
+              <article className="group" tabIndex={0} aria-label={`${member.name}, ${member.designation}`}>
+                <div className="relative aspect-[3/5] w-full bg-n-100">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-contain object-bottom grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0 group-focus-within:grayscale-0"
+                      sizes="(min-width: 1024px) 22vw, 46vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-end p-4">
+                      <p className="font-display text-[42px] font-semibold tracking-[-0.04em] text-n-300">
+                        {member.name
+                          .split(" ")
+                          .slice(0, 2)
+                          .map((part) => part[0])
+                          .join("")}
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div className="mt-4">
                   <p className="font-display text-sm font-semibold">{member.name}</p>
-                  {member.designation ? <p className="mt-1 text-[13px] text-n-700">{member.designation}</p> : null}
+                  <p className="mt-1 text-[13px] font-medium text-charcoal">{member.designation}</p>
                   {member.education ? <p className="mt-2 text-[13px] leading-snug text-n-700">{member.education}</p> : null}
                   {member.experience ? <p className="mt-1 text-[13px] leading-snug text-n-700">{member.experience}</p> : null}
                 </div>

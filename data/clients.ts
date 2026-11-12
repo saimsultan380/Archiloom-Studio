@@ -23,16 +23,20 @@ export const clients: ClientMark[] = [
   { id: "bologna", name: "Bologna Fresh Pasta", logo: "/clients/bologna.webp" },
   { id: "edgewater", name: "Edgewater Ice Cream", logo: "/clients/edgewater.webp" },
   { id: "take-burger", name: "Take Burger", logo: "/clients/take-burger.webp" },
-  { id: "take-mark", name: "Take Burger", logo: "/clients/take-mark.webp" },
   { id: "maryland-chicken", name: "Maryland Chicken", logo: "/clients/maryland-chicken.webp" },
   { id: "baby-cafe", name: "Baby Café", logo: "/clients/baby-cafe.webp" },
   { id: "dei-coltelli", name: "dei Coltelli", logo: "/clients/dei-coltelli.webp" },
   { id: "z-outdoors", name: "Z Outdoors", logo: "/clients/z-outdoors.webp" },
   { id: "recovapro", name: "Recova Pro", logo: "/clients/recovapro.webp" },
-  { id: "recovapro-mark", name: "Recova Pro", logo: "/clients/recovapro-mark.webp" },
   { id: "yuri-essence", name: "Yuri Essence", logo: "/clients/yuri-essence.webp" },
-  { id: "yoe-nails", name: "YOE Nails & Beauty House", logo: "/clients/yoe-nails.webp" },
   { id: "violet-and-ivvy-wordmark", name: "Violet and Ivvy", logo: "/clients/violet-and-ivvy-wordmark.webp" },
+  { id: "kinetic-design", name: "Kinetic Design", logo: "/clients/kinetic-design.webp" },
+  { id: "intelligent-horizon", name: "Intelligent Horizon", logo: "/clients/intelligent-horizon.webp" },
+  { id: "efreez", name: "Efreez", logo: "/clients/efreez.webp" },
+  { id: "merchant-architecture", name: "Merchant Architecture", logo: "/clients/merchant-architecture.webp" },
+  { id: "knoll-miller", name: "Knoll Miller Architects", logo: "/clients/knoll-miller.webp" },
+  { id: "boardwalk-billys", name: "Boardwalk Billys", logo: "/clients/boardwalk-billys.webp" },
+  { id: "tech-station", name: "Tech Station", logo: "/clients/tech-station.webp" },
 ];
 
 export const marqueeClients = clients.filter((client) => client.logo);

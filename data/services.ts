@@ -32,8 +32,8 @@ export const services: Service[] = [
     tags: ["Concept design", "Plans & elevations", "Design development"],
     deliverables: ["Massing options", "Floor plans and elevations", "Design development set"],
     icon: "architecture",
-    image: "/images/courtyard-house.jpg",
-    imageAlt: "Courtyard house study in pale concrete and timber",
+    image: "/images/service-architecture.webp",
+    imageAlt: "Architectural design presentation of a contemporary residence",
   },
   {
     id: "revit-drafting",
@@ -44,8 +44,8 @@ export const services: Service[] = [
     tags: ["2D documentation", "Redraws", "Renovation drawings"],
     deliverables: ["Modelled plans", "Redlines turned around", "Renovation drawing sets"],
     icon: "drafting",
-    image: "/images/commercial-edge.jpg",
-    imageAlt: "Precise commercial elevation with charcoal metal and glass",
+    image: "/images/service-revit.webp",
+    imageAlt: "Revit drafting view of a coordinated architectural model",
   },
   {
     id: "permit-sets",
@@ -56,8 +56,8 @@ export const services: Service[] = [
     tags: ["Permit sets", "Construction drawings", "Coordination"],
     deliverables: ["Submission sheets", "Consultant coordination", "Issued-for-construction updates"],
     icon: "permits",
-    image: "/images/cedar-court.jpg",
-    imageAlt: "Low housing block ready for coordinated construction drawings",
+    image: "/images/service-permits.webp",
+    imageAlt: "Construction and permit drawing set for a residence",
   },
   {
     id: "modeling-rendering",
@@ -68,8 +68,8 @@ export const services: Service[] = [
     tags: ["3D modeling", "Photoreal renders", "Walkthroughs"],
     deliverables: ["Coordinated model", "Still renders", "Edited walkthrough"],
     icon: "visualization",
-    image: "/images/hero-model.jpg",
-    imageAlt: "Photoreal render of a courtyard pavilion at dusk",
+    image: "/images/service-rendering-2.webp",
+    imageAlt: "Photoreal architectural rendering and visualization",
   },
   {
     id: "interior-design",
@@ -80,8 +80,8 @@ export const services: Service[] = [
     tags: ["Space planning", "Materials", "Detailing"],
     deliverables: ["Planning options", "Material palette", "Interior detail drawings"],
     icon: "interior",
-    image: "/images/interior-living.jpg",
-    imageAlt: "Oak and plaster living room with a long garden window",
+    image: "/images/service-interior-2.webp",
+    imageAlt: "Interior design of a furnished living space",
   },
 ];
 

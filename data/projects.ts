@@ -63,18 +63,6 @@ function inferScope(category: Exclude<ProjectCategory, "All">) {
   return "Interior design, space planning and visualization";
 }
 
-function numberedFrames(prefix: string, from: number, to: number, label: string): ProjectFrame[] {
-  const frames: ProjectFrame[] = [];
-  for (let n = from; n <= to; n += 1) {
-    const id = String(n).padStart(2, "0");
-    frames.push({
-      src: `/images/${prefix}-${id}.webp`,
-      alt: `${label} — view ${n - from + 1}`,
-    });
-  }
-  return frames;
-}
-
 function project(input: {
   id: string;
   name: string;
@@ -90,6 +78,8 @@ function project(input: {
   cover: number;
   frameFrom: number;
   frameTo: number;
+  /** Gallery order. Cover is shown first and left out of the frame list. */
+  order?: number[];
   video?: Partial<ProjectVideo>;
   sourceNote?: string;
 }): Project {
@@ -98,6 +88,9 @@ function project(input: {
   const projectType = input.projectType ?? inferProjectType(input.name, input.summary);
   const client = input.client ?? input.name;
   const scope = input.scope ?? inferScope(input.category);
+  const sequence =
+    input.order ??
+    Array.from({ length: input.frameTo - input.frameFrom + 1 }, (_, index) => input.frameFrom + index);
   return {
     id: input.id,
     name: input.name,
@@ -111,7 +104,12 @@ function project(input: {
     brief: input.brief,
     image,
     imageAlt: `${input.name} — project cover`,
-    frames: numberedFrames(input.prefix, input.frameFrom, input.frameTo, input.name),
+    frames: sequence
+      .filter((n) => n !== input.cover)
+      .map((n, index) => ({
+        src: `/images/${input.prefix}-${String(n).padStart(2, "0")}.webp`,
+        alt: `${input.name} — view ${index + 1}`,
+      })),
     video: {
       src: "",
       poster: image,
@@ -127,7 +125,7 @@ function project(input: {
  * Live client projects from attached packs in /public.
  * Cover is hero/index; gallery frames never repeat the cover.
  */
-export const projects: Project[] = [
+const catalog: Project[] = [
   project({
     id: "masala-pizza-schaumburg",
     name: "Masala Pizza",
@@ -176,7 +174,7 @@ export const projects: Project[] = [
       "The concept turns a neighborhood cut shop into a race-day pit stop: dark shell, red accents, mirrored stations and lighting that feels fast without shouting.",
     prefix: "finish-line",
     cover: 1,
-    frameFrom: 2,
+    frameFrom: 1,
     frameTo: 7,
     video: {
       src: "/images/finish-line-completion.webp",
@@ -211,8 +209,8 @@ export const projects: Project[] = [
     brief:
       "The fit-out balances brand warmth with a practical queue-to-pickup path suited to a busy urban café.",
     prefix: "seven-leaves",
-    cover: 1,
-    frameFrom: 2,
+    cover: 2,
+    frameFrom: 1,
     frameTo: 6,
   }),
   project({
@@ -226,7 +224,7 @@ export const projects: Project[] = [
     brief:
       "Seating, bar and service paths are planned for both daytime dining and night energy without losing clarity.",
     prefix: "nouveau",
-    cover: 1,
+    cover: 6,
     frameFrom: 2,
     frameTo: 12,
     video: {
@@ -247,8 +245,8 @@ export const projects: Project[] = [
     brief:
       "Finishes stay light and fresh so the brand product stays the hero from entrance through pickup.",
     prefix: "pressed",
-    cover: 1,
-    frameFrom: 2,
+    cover: 4,
+    frameFrom: 1,
     frameTo: 5,
   }),
   project({
@@ -263,7 +261,7 @@ export const projects: Project[] = [
       "The room is built for speed of service while keeping enough presence for guests who stay to eat.",
     prefix: "tacotarian",
     cover: 1,
-    frameFrom: 2,
+    frameFrom: 1,
     frameTo: 7,
   }),
   project({
@@ -298,7 +296,7 @@ export const projects: Project[] = [
     brief:
       "The design keeps the counter as the focus, with warm finishes and open sightlines so the space reads cleanly from entry through seating.",
     prefix: "odoe",
-    cover: 1,
+    cover: 5,
     frameFrom: 2,
     frameTo: 14,
   }),
@@ -328,7 +326,7 @@ export const projects: Project[] = [
     brief:
       "Dark, high-contrast finishes and controlled lighting put the merchandise first while keeping the room elegant and clear.",
     prefix: "lamborghini",
-    cover: 1,
+    cover: 3,
     frameFrom: 2,
     frameTo: 7,
   }),
@@ -379,7 +377,7 @@ export const projects: Project[] = [
     brief:
       "The plan supports browsing and assisted selling with clean sightlines and a strong opening-day brand presence.",
     prefix: "tech-station",
-    cover: 1,
+    cover: 3,
     frameFrom: 2,
     frameTo: 6,
     video: {
@@ -415,7 +413,7 @@ export const projects: Project[] = [
     brief:
       "Lighting and finishes support cut, colour and wait zones while keeping the room quiet and premium.",
     prefix: "ramsar",
-    cover: 1,
+    cover: 4,
     frameFrom: 2,
     frameTo: 11,
   }),
@@ -497,8 +495,9 @@ export const projects: Project[] = [
       "Massing, facade and approach are composed so the building reads clearly as a destination from the street.",
     prefix: "flavoursrest",
     cover: 1,
-    frameFrom: 2,
-    frameTo: 7,
+    frameFrom: 1,
+    frameTo: 11,
+    order: [1, 4, 2, 7, 3, 5, 6, 8, 9, 10, 11],
   }),
   project({
     id: "naache-commons",
@@ -511,8 +510,37 @@ export const projects: Project[] = [
     brief:
       "The studies explore approach, facade rhythm and site presence for a mixed commercial location.",
     prefix: "naache",
+    cover: 9,
+    frameFrom: 1,
+    frameTo: 14,
+    order: [9, 2, 10, 11, 1, 3, 4, 5, 6, 7, 8, 12, 13, 14],
+  }),
+  project({
+    id: "wejdan-salon",
+    name: "Wejdan Salon",
+    category: "Interior Design",
+    location: "Riyadh, KSA",
+    timeline: "2024 — 2025",
+    projectType: "Beauty",
+    client: "Wejdan Salon",
+    scope: "Interior design, space planning and visualization",
+    summary:
+      "A salon interior in Riyadh — reception, styling stations and a calm guest path finished for opening day.",
+    brief:
+      "The fit-out organises arrival, styling and back-of-house so the room stays clear and polished through a full day of appointments.",
+    prefix: "wejdan",
     cover: 1,
     frameFrom: 2,
-    frameTo: 8,
+    frameTo: 30,
+    video: {
+      src: "/images/wejdan-completion.webp",
+      poster: "/images/wejdan-01.webp",
+      label: "Completion loop",
+      kind: "gif",
+    },
   }),
 ];
+
+const retired = new Set(["chaos-karts", "bin-yaber", "bin-yaber-02", "cutbox", "take-burger"]);
+
+export const projects = catalog.filter((item) => !retired.has(item.id));
