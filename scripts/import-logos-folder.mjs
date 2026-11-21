@@ -16,7 +16,7 @@ export const logoJobs = [
   { id: "finish-line-icon", file: "ICON.png", mode: "knockout-black", name: "Finish Line" },
   { id: "boardwalk-billys", file: "images (1).png", mode: "keep", name: "Boardwalk Billys" },
   { id: "violet-and-ivvy", file: "images.jpg", mode: "knockout-black", name: "Violet and Ivvy" },
-  { id: "pressed-juicery", file: "images.png", mode: "black", name: "Pressed Juicery" },
+  { id: "pressed-juicery", file: "pressed.png", mode: "knockout-white", name: "Pressed Juicery" },
   { id: "recovapro", file: "logo-01.PNG", mode: "black", name: "Recova Pro" },
   { id: "edgewater", file: "LOGO-1-RGB.jpg", mode: "keep", name: "Edgewater Ice Cream" },
   { id: "edgewater-dark", file: "LOGO-2-RGB.png", mode: "knockout-black", name: "Edgewater Ice Cream" },
@@ -31,7 +31,7 @@ export const logoJobs = [
   { id: "recovapro-mark", file: "recovapro-02.PNG", mode: "black", name: "Recova Pro" },
   { id: "take-mark", file: "Screenshot 2025-09-04 120425.jpg", mode: "black", name: "Take Burger" },
   { id: "take-burger", file: "Screenshot 2025-09-07 150507.jpg", mode: "black", name: "Take Burger" },
-  { id: "jenjudan", file: "Screenshot 2026-10-24 134202.png", mode: "knockout-black", name: "Jenjudan Bubble Tea" },
+  { id: "jenjudan", file: "JANJUDAN TEA.png", mode: "keep", name: "Jenjudan Bubble Tea" },
   { id: "cutbox", file: "Screenshot 2026-10-24 135140.png", mode: "black", name: "Cutbox" },
   { id: "violet-and-ivvy-wordmark", file: "Screenshot 2026-10-24 140835.png", mode: "black", name: "Violet and Ivvy" },
   { id: "dei-coltelli", file: "Untitled-2.jpg", mode: "keep", name: "dei Coltelli" },
@@ -52,6 +52,15 @@ function processRgba(data, mode) {
 
     if (mode === "knockout-black") {
       if (lum < 42 && sat < 36) data[i + 3] = 0;
+      continue;
+    }
+
+    if (mode === "knockout-white") {
+      data[i] = 0;
+      data[i + 1] = 0;
+      data[i + 2] = 0;
+      const alpha = Math.round(255 - lum);
+      data[i + 3] = alpha < 4 ? 0 : alpha;
       continue;
     }
 

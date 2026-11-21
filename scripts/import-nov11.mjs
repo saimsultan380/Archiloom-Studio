@@ -103,7 +103,7 @@ async function run() {
   const logos = join(pack, "new logos for clients");
   const logoJobs = [
     ["pressed_juicery_transparent.png", "pressed-juicery", "keep"],
-    ["JANJUDAN TEA.png", "jenjudan", "knockout-black"],
+    ["JANJUDAN TEA.png", "jenjudan", "keep"],
     ["AFO-01.png", "kinetic-design", "keep"],
     ["AFO-02.png", "intelligent-horizon", "knockout-black"],
     ["AFO-04.png", "efreez", "keep"],

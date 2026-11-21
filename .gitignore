@@ -5,6 +5,7 @@ out
 *.log
 .DS_Store
 next-env.d.ts
+*.tsbuildinfo
 
 # Client source drops (heavy 4k / PDF / video packs). Optimized stills live in public/images.
 public/*/
